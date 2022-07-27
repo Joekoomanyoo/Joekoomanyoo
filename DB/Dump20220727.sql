@@ -18,6 +18,32 @@ USE `withculture`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `tb_attach`
+--
+
+DROP TABLE IF EXISTS `tb_attach`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_attach` (
+  `attach_seq` int NOT NULL AUTO_INCREMENT,
+  `attach_name` varchar(100) DEFAULT NULL,
+  `attach_file_url` text,
+  `attach_created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`attach_seq`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_attach`
+--
+
+LOCK TABLES `tb_attach` WRITE;
+/*!40000 ALTER TABLE `tb_attach` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_attach` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+--
 -- Table structure for table `tb_daily_memo`
 --
 
@@ -46,6 +72,7 @@ LOCK TABLES `tb_daily_memo` WRITE;
 /*!40000 ALTER TABLE `tb_daily_memo` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
 --
 -- Table structure for table `tb_eval`
 --
@@ -56,12 +83,16 @@ DROP TABLE IF EXISTS `tb_eval`;
 CREATE TABLE `tb_eval` (
   `eval_seq` int NOT NULL,
   `user_seq` int NOT NULL,
-  `eval_list1` int DEFAULT NULL,
-  `eval_list2` int DEFAULT NULL,
-  `eval_list3` int DEFAULT NULL,
-  `eval_list4` int DEFAULT NULL,
-  `eval_list5` int DEFAULT NULL,
-  `eval_updated_at` timestamp NULL DEFAULT NULL
+  `eval_list1` int NOT NULL,
+  `eval_list2` int NOT NULL,
+  `eval_list3` int NOT NULL,
+  `eval_list4` int NOT NULL,
+  `eval_list5` int NOT NULL,
+  `eval_updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`eval_seq`),
+  KEY `user_seq_idx` (`user_seq`),
+  KEY `eval_user_seq_idx` (`user_seq`),
+  CONSTRAINT `eval_user_seq` FOREIGN KEY (`user_seq`) REFERENCES `tb_user` (`user_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,14 +113,19 @@ DROP TABLE IF EXISTS `tb_feed`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_feed` (
-  `feed_seq` int NOT NULL,
+  `feed_seq` int NOT NULL AUTO_INCREMENT,
   `user_seq` int NOT NULL,
   `attach_seq` int NOT NULL,
-  `feed_title` varchar(25) DEFAULT NULL,
-  `feed_content` text,
-  `feed_open` char(1) DEFAULT NULL,
+  `feed_title` varchar(100) NOT NULL,
+  `feed_content` text NOT NULL,
+  `feed_open` char(1) NOT NULL,
   `feed_created_at` timestamp NULL DEFAULT NULL,
-  `feed_updated_at` timestamp NULL DEFAULT NULL
+  `feed_updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`feed_seq`),
+  KEY `user_seq_idx` (`user_seq`),
+  KEY `attach_seq_idx` (`attach_seq`),
+  CONSTRAINT `attach_seq` FOREIGN KEY (`attach_seq`) REFERENCES `tb_attach` (`attach_seq`),
+  CONSTRAINT `user_seq` FOREIGN KEY (`user_seq`) REFERENCES `tb_user` (`user_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -110,10 +146,13 @@ DROP TABLE IF EXISTS `tb_feed_hashtag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_feed_hashtag` (
-  `fh_seq` int NOT NULL,
+  `fh_seq` int NOT NULL AUTO_INCREMENT,
   `feed_seq` int NOT NULL,
-  `fh_tag` varchar(20) DEFAULT NULL,
-  `fh_created_at` timestamp NULL DEFAULT NULL
+  `fh_tag` varchar(20) NOT NULL,
+  `fh_created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`fh_seq`),
+  KEY `feed_seq_idx` (`feed_seq`),
+  CONSTRAINT `feed_seq` FOREIGN KEY (`feed_seq`) REFERENCES `tb_feed` (`feed_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -134,9 +173,14 @@ DROP TABLE IF EXISTS `tb_feed_like`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_feed_like` (
-  `feed_like_seq` int NOT NULL,
+  `feed_like_seq` int NOT NULL AUTO_INCREMENT,
   `feed_seq` int NOT NULL,
-  `user_seq` int NOT NULL
+  `user_seq` int NOT NULL,
+  PRIMARY KEY (`feed_like_seq`),
+  KEY `user_seq_idx` (`user_seq`),
+  KEY `feed_seq_idx` (`feed_seq`),
+  CONSTRAINT `feed_seq1` FOREIGN KEY (`feed_seq`) REFERENCES `tb_feed` (`feed_seq`),
+  CONSTRAINT `user_seq1` FOREIGN KEY (`user_seq`) REFERENCES `tb_user` (`user_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -157,17 +201,21 @@ DROP TABLE IF EXISTS `tb_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_group` (
-  `group_seq` int NOT NULL,
+  `group_seq` int NOT NULL AUTO_INCREMENT,
   `attach_seq` int NOT NULL,
-  `group_name` varchar(50) DEFAULT NULL,
-  `group_maker` int DEFAULT NULL,
-  `group_intro` varchar(255) DEFAULT NULL,
-  `group_access_type` char(1) DEFAULT NULL,
+  `group_name` varchar(50) NOT NULL,
+  `group_maker` int NOT NULL,
+  `group_description` varchar(255) DEFAULT NULL,
+  `group_access_type` char(1) NOT NULL,
   `group_pwd` varchar(40) DEFAULT NULL,
-  `group_isActive` char(1) DEFAULT NULL,
-  `group_isFull` char(1) DEFAULT NULL,
+  `group_is_active` char(1) NOT NULL,
+  `group_status` char(1) NOT NULL,
   `group_created_at` timestamp NULL DEFAULT NULL,
-  `group_updated_at` timestamp NULL DEFAULT NULL
+  `group_updated_at` timestamp NULL DEFAULT NULL,
+  `group_max` int NOT NULL,
+  PRIMARY KEY (`group_seq`),
+  KEY `attach_seq_idx` (`attach_seq`),
+  CONSTRAINT `cover_attach_seq` FOREIGN KEY (`attach_seq`) REFERENCES `tb_attach` (`attach_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -181,6 +229,39 @@ LOCK TABLES `tb_group` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tb_group_attribute`
+--
+
+DROP TABLE IF EXISTS `tb_group_attribute`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_group_attribute` (
+  `ga_seq` int NOT NULL AUTO_INCREMENT,
+  `group_seq` int NOT NULL,
+  `ga_region` varchar(45) NOT NULL,
+  `ga_start_date` int NOT NULL,
+  `ga_end_date` int NOT NULL,
+  `ga_child_join` char(1) NOT NULL,
+  `ga_global_join` char(1) NOT NULL,
+  `ga_age` int NOT NULL,
+  `ga_created_at` timestamp NULL DEFAULT NULL,
+  `ga_updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`ga_seq`),
+  KEY `group_seq_idx` (`group_seq`),
+  CONSTRAINT `group_seq` FOREIGN KEY (`group_seq`) REFERENCES `tb_group` (`group_seq`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_group_attribute`
+--
+
+LOCK TABLES `tb_group_attribute` WRITE;
+/*!40000 ALTER TABLE `tb_group_attribute` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_group_attribute` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tb_group_chat`
 --
 
@@ -188,14 +269,21 @@ DROP TABLE IF EXISTS `tb_group_chat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_group_chat` (
-  `chat_seq` int DEFAULT NULL,
+  `chat_seq` int NOT NULL AUTO_INCREMENT,
   `group_seq` int NOT NULL,
   `user_seq` int NOT NULL,
   `attach_seq` int NOT NULL,
-  `chat_content_type` char(1) DEFAULT NULL,
-  `chat_content` varchar(255) DEFAULT NULL,
+  `chat_content_type` char(1) NOT NULL,
+  `chat_content` varchar(255) NOT NULL,
   `chat_created_at` timestamp NULL DEFAULT NULL,
-  `chat_updated_at` timestamp NULL DEFAULT NULL
+  `chat_updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`chat_seq`),
+  KEY `gc_group_seq_idx` (`group_seq`),
+  KEY `gc_user_seq_idx` (`user_seq`),
+  KEY `gc_attach_seq_idx` (`attach_seq`),
+  CONSTRAINT `gc_attach_seq` FOREIGN KEY (`attach_seq`) REFERENCES `tb_attach` (`attach_seq`),
+  CONSTRAINT `gc_group_seq` FOREIGN KEY (`group_seq`) REFERENCES `tb_group` (`group_seq`),
+  CONSTRAINT `gc_user_seq` FOREIGN KEY (`user_seq`) REFERENCES `tb_user` (`user_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -209,6 +297,35 @@ LOCK TABLES `tb_group_chat` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tb_group_daily_memo`
+--
+
+DROP TABLE IF EXISTS `tb_group_daily_memo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_group_daily_memo` (
+  `gdm_seq` int NOT NULL AUTO_INCREMENT,
+  `group_seq` int NOT NULL,
+  `gdm_date` int NOT NULL,
+  `gdm_content` text NOT NULL,
+  `gdm_created_at` timestamp NULL DEFAULT NULL,
+  `gdm_updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`gdm_seq`),
+  KEY `gdm_group_seq_idx` (`group_seq`),
+  CONSTRAINT `gdm_group_seq` FOREIGN KEY (`group_seq`) REFERENCES `tb_group` (`group_seq`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_group_daily_memo`
+--
+
+LOCK TABLES `tb_group_daily_memo` WRITE;
+/*!40000 ALTER TABLE `tb_group_daily_memo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_group_daily_memo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tb_group_destination`
 --
 
@@ -216,10 +333,15 @@ DROP TABLE IF EXISTS `tb_group_destination`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_group_destination` (
-  `gd_seq` int NOT NULL,
+  `gd_seq` int NOT NULL AUTO_INCREMENT,
   `group_seq` int NOT NULL,
   `heritage_seq` int NOT NULL,
-  `gd_completed` char(1) DEFAULT NULL
+  `gd_completed` char(1) DEFAULT NULL,
+  PRIMARY KEY (`gd_seq`),
+  KEY `group_seq_idx` (`group_seq`),
+  KEY `heritage_seq_idx` (`heritage_seq`),
+  CONSTRAINT `gd_group_seq` FOREIGN KEY (`group_seq`) REFERENCES `tb_group` (`group_seq`),
+  CONSTRAINT `gd_heritage_seq` FOREIGN KEY (`heritage_seq`) REFERENCES `tb_heritage` (`heritage_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -240,15 +362,20 @@ DROP TABLE IF EXISTS `tb_group_member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_group_member` (
-  `member_seq` int NOT NULL,
+  `member_seq` int NOT NULL AUTO_INCREMENT,
   `user_seq` int NOT NULL,
   `group_seq` int NOT NULL,
-  `member_status` int DEFAULT NULL,
+  `member_status` int NOT NULL,
   `member_in_at` timestamp NULL DEFAULT NULL,
-  `member_join_appeal` varchar(255) DEFAULT NULL,
-  `member_eval` char(1) DEFAULT NULL,
+  `member_join_appeal` varchar(255) NOT NULL,
+  `member_eval` char(1) NOT NULL,
   `member_created_at` timestamp NULL DEFAULT NULL,
-  `member_updated_at` timestamp NULL DEFAULT NULL
+  `member_updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`member_seq`),
+  KEY `gm_user_seq_idx` (`user_seq`),
+  KEY `gm_group_seq_idx` (`group_seq`),
+  CONSTRAINT `gm_group_seq` FOREIGN KEY (`group_seq`) REFERENCES `tb_group` (`group_seq`),
+  CONSTRAINT `gm_user_seq` FOREIGN KEY (`user_seq`) REFERENCES `tb_user` (`user_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -269,13 +396,16 @@ DROP TABLE IF EXISTS `tb_group_schedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_group_schedule` (
-  `gs_seq` int NOT NULL,
+  `gs_seq` int NOT NULL AUTO_INCREMENT,
   `group_seq` int NOT NULL,
-  `gs_date` int DEFAULT NULL,
-  `gs_time` int DEFAULT NULL,
-  `gs_content` varchar(80) DEFAULT NULL,
+  `gs_date` int NOT NULL,
+  `gs_time` int NOT NULL,
+  `gs_content` varchar(80) NOT NULL,
   `gs_registered_at` timestamp NULL DEFAULT NULL,
-  `gs_updated_at` timestamp NULL DEFAULT NULL
+  `gs_updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`gs_seq`),
+  KEY `group_seq_idx` (`group_seq`),
+  CONSTRAINT `shedule_group_seq` FOREIGN KEY (`group_seq`) REFERENCES `tb_group` (`group_seq`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -287,7 +417,6 @@ LOCK TABLES `tb_group_schedule` WRITE;
 /*!40000 ALTER TABLE `tb_group_schedule` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_group_schedule` ENABLE KEYS */;
 UNLOCK TABLES;
-
 --
 -- Table structure for table `tb_heritage`
 --
