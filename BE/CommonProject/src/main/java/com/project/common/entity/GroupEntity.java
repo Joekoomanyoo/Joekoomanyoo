@@ -52,12 +52,14 @@ public class GroupEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date groupUpdatedAt;
-
+    
+//    @OneToOne(mappedBy = "groupEntity",cascade = CascadeType.ALL)
+//    private GroupAttributeEntity groupAttributeEntity;
 
     @Builder
-	public GroupEntity(Long groupSeq, String attachSeq, Long groupMaker, String groupPassword, String groupName, int groupMaxCount,
-			String groupDescription, String groupStatus, char groupIsActive, char groupAccessType, Date groupCreatedAt,
-			Date groupUpdatedAt) {
+	public GroupEntity(Long groupSeq, String attachSeq, Long groupMaker, String groupPassword, String groupName,
+			int groupMaxCount, String groupDescription, String groupStatus, char groupIsActive, char groupAccessType,
+			Date groupCreatedAt, Date groupUpdatedAt, GroupAttributeEntity groupAttributeEntity) {
 		super();
 		this.groupSeq = groupSeq;
 		this.attachSeq = attachSeq;
@@ -71,7 +73,11 @@ public class GroupEntity {
 		this.groupAccessType = groupAccessType;
 		this.groupCreatedAt = groupCreatedAt;
 		this.groupUpdatedAt = groupUpdatedAt;
+	//	this.groupAttributeEntity = groupAttributeEntity;
 	}
+
+
+	
     
     
 

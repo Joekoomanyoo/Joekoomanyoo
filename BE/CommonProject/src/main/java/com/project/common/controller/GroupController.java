@@ -21,6 +21,13 @@ public class GroupController {
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     
+    //모임 개설
+    @ApiOperation(value = "모임 개설, 모임 개설이 성공하면, 모임 정보(GroupDto) 반환")
+    @PostMapping("/add")
+    public ResponseEntity<GroupDto> addGroup(@RequestBody GroupDto groupDto){
+    	return new ResponseEntity<>(groupService.addGroup(groupDto), HttpStatus.CREATED);
+    }
+    
     //모임 전체 목록 조회
     @ApiOperation(value = "모임 전체 목록 조회, 모임 정보(GroupDto) 반환")
     @GetMapping("/list")
@@ -28,12 +35,14 @@ public class GroupController {
     	return new ResponseEntity<>(groupService.getGroupList(),HttpStatus.OK);
     }
     
-    //모임 개설
-    @ApiOperation(value = "모임 개설, 모임 개설이 성공하면, 모임 정보(GroupDto) 반환")
-    @PostMapping("/add")
-    public ResponseEntity<GroupDto> addGroup(@RequestBody GroupDto groupDto){
-    	return new ResponseEntity<>(groupService.addGroup(groupDto), HttpStatus.CREATED);
-    }
+//  //내 모임 목록 조회
+//    @ApiOperation(value = "내 모임 목록 조회, 모임 정보(GroupDto) 반환")
+//    @GetMapping("/list/user/{userSeq}")
+//    public ResponseEntity<List<GroupDto>> getMyGroupList(@PathVariable("userSeq") String userSeq) throws Exception{
+//    	return new ResponseEntity<>(groupService.getMyGroupList(userSeq),HttpStatus.OK);
+//    }
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     
     //모임 기본 정보 수정
 
@@ -76,6 +85,32 @@ public class GroupController {
     	return new ResponseEntity<>(HttpStatus.OK);
         
     }
+    
+//    //모임 시작
+//    @PatchMapping("/{groupSeq}/start")
+//    public ResponseEntity<?> startGroup(@PathVariable("groupSeq") Long groupSeq){
+//    	return new ResponseEntity<>(groupService.startGroup(groupSeq),HttpStatus.OK);
+//    }
+//    
+//  //모임 종료
+//    @PatchMapping("/{groupSeq}/finish")
+//    public ResponseEntity<?> finishGroup(@PathVariable("groupSeq") Long groupSeq){
+//    	return new ResponseEntity<>(groupService.finishGroup(groupSeq),HttpStatus.OK);
+//    }
+//    
+//    //모임 수락
+//    @PatchMapping("/{groupSeq}/approve")
+//    public ResponseEntity<?> startGroup(@PathVariable("groupSeq") Long groupSeq){
+//    	return new ResponseEntity<>(groupService.startGroup(groupSeq),HttpStatus.OK);
+//    }
+//    
+//  //모임 거절
+//    @PatchMapping("/{groupSeq}/reject")
+//    public ResponseEntity<?> finishGroup(@PathVariable("groupSeq") Long groupSeq){
+//    	return new ResponseEntity<>(groupService.finishGroup(groupSeq),HttpStatus.OK);
+//    }
+//    
+//    
     
     /////////////////////////////////////////////////////////////////////////////////////////////////
     

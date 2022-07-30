@@ -4,6 +4,7 @@ package com.project.common.dto;
 
 import java.util.Date;
 
+import com.project.common.entity.GroupAttributeEntity;
 import com.project.common.entity.GroupEntity;
 
 import lombok.Builder;
@@ -29,13 +30,14 @@ public class GroupDto {
 	private char groupIsActive;
 	private Date groupCreatedAt;
 	private Date groupUpdatedAt;
-	
+
+    private GroupAttributeEntity groupAttributeEntity;
 	
 
 	@Builder
-	public GroupDto(long groupSeq, String groupName, String attachSeq,long groupMaker, String groupDescription, int groupMaxCount,
-			char groupAccessType, String groupPassword, String groupStatus, char groupIsActive, Date groupCreatedAt,
-			Date groupUpdatedAt) {
+	public GroupDto(long groupSeq, String groupName, String attachSeq, long groupMaker, String groupDescription,
+			int groupMaxCount, char groupAccessType, String groupPassword, String groupStatus, char groupIsActive,
+			Date groupCreatedAt, Date groupUpdatedAt, GroupAttributeEntity groupAttributeEntity) {
 		super();
 		this.groupSeq = groupSeq;
 		this.groupName = groupName;
@@ -49,6 +51,7 @@ public class GroupDto {
 		this.groupIsActive = groupIsActive;
 		this.groupCreatedAt = groupCreatedAt;
 		this.groupUpdatedAt = groupUpdatedAt;
+		this.groupAttributeEntity = groupAttributeEntity;
 	}
 	
 
@@ -69,6 +72,9 @@ public class GroupDto {
                 .groupUpdatedAt(groupUpdatedAt).build();
 
     }
+
+
+
 
 
 

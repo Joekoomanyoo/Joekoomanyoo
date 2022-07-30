@@ -1,6 +1,7 @@
 package com.project.common.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import com.project.common.dto.GroupDto;
 import com.project.common.dto.GroupMapper;
 import com.project.common.entity.GroupAttributeEntity;
 import com.project.common.entity.GroupEntity;
+import com.project.common.entity.UserEntity;
 import com.project.common.repository.GroupAttributeRepository;
 import com.project.common.repository.GroupRepository;
 
@@ -22,18 +24,39 @@ import lombok.RequiredArgsConstructor;
 public class GroupService{
 	private final GroupRepository groupRepository;
 	private final GroupAttributeRepository groupAttributeRepository;
+	private final UserService userService;
+	
+	//////////////////////////////////
+	//모임 개설
+	public GroupDto addGroup(GroupDto groupDto) {
+		GroupEntity group = groupDto.toEntity();
+		GroupEntity saved= groupRepository.save(group);
+		
+		//참가자 목록 등록코드 추가 필요
+		
+		return GroupMapper.MAPPER.toDto(saved);
+	}
 	
 	//전체 목록 조회
 	public List<GroupDto> getGroupList(){
 		return GroupMapper.MAPPER.toDtoList(groupRepository.findAll());
 	}
 	
-	//모임 개설
-	public GroupDto addGroup(GroupDto groupDto) {
-		groupRepository.save(groupDto.toEntity());
-		return groupDto;
-	}
-
+		
+	
+////////////////////////////////////////////
+	
+//	//내 목록 조회
+//	public List<GroupDto> getMyGroupList(long userSeq){
+//		// UserEntity user= userService.findById(userSeq);
+//		
+//		return groupJoinService
+//				.findByUser(user).stream()
+//				.map(GroupParticipant::getGroup)
+//				.map(GroupDto::of)
+//				.collect(Collectors.toList());
+//	}
+	
 	//모임 기본 정보 수정
 	public GroupDto updateGroup(Long groupSeq,GroupDto groupDto) {
 		GroupEntity oldGroup =groupRepository.findById(groupSeq).orElse(null);
@@ -64,7 +87,7 @@ public class GroupService{
 		
 		GroupAttributeDto updateAttr=new GroupAttributeDto();
 		if(oldAttr != null) {
-			updateAttr.setGroupSeq(oldAttr.getGroupSeq());
+	//		updateAttr.setGroupSeq(oldAttr.getGroupSeq());
 			updateAttr.setGaRegion(groupAttributeDto.getGaRegion());
 			updateAttr.setGaStartDate(groupAttributeDto.getGaStartDate());
 			updateAttr.setGaEndDate(groupAttributeDto.getGaEndDate());
@@ -96,5 +119,17 @@ public class GroupService{
 	public void deleteGroup(Long groupSeq){
 		groupRepository.deleteById(groupSeq);
 	}
+	
+//	
+//	//모임 참가
+//	public String joinGroup(long groupSeq) {
+//		GroupEntity selectGroup=groupRepository.findById(groupSeq).orElse(null);
+//		GroupParticipantEntity groupParticipant = GroupParticipantEntity.builder()
+//				.study(selectGroup)
+//				.participant(user)
+//				.build();
+//		groupPariticipantService.save(groupParticipant)
+//	
+//	}
 
 }

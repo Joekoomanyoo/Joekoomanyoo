@@ -14,8 +14,15 @@ import java.util.Date;
 public class GroupAttributeEntity {
 
   
-    @Id
-    @JoinColumn(name="group_seq",nullable=false)
+//	@Id
+//	@Column(name="ga_seq",nullable=false)
+//	private Long gaSeq;
+	
+//    @Column(name="group_seq",nullable=false)
+//	private Long groupSeq;
+	@Id
+	//@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="group_seq")
 	private Long groupSeq;
 
     @Column(name="ga_region",nullable=false)
@@ -43,11 +50,14 @@ public class GroupAttributeEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@UpdateTimestamp
 	private Date gaUpdatedAt;
+	
 
 	@Builder
-	public GroupAttributeEntity(Long groupSeq, String gaRegion, int gaStartDate, int gaEndDate,
+	public GroupAttributeEntity(Long groupSeq,String gaRegion, int gaStartDate, int gaEndDate,
 			char gaChildJoin, char gaGlobalJoin, int gaAge, Date gaCreatedAt, Date gaUpdatedAt) {
-		this.groupSeq = groupSeq;
+		super();
+	//	this.gaSeq = gaSeq;
+	this.groupSeq = groupSeq;
 		this.gaRegion = gaRegion;
 		this.gaStartDate = gaStartDate;
 		this.gaEndDate = gaEndDate;
@@ -56,7 +66,11 @@ public class GroupAttributeEntity {
 		this.gaAge = gaAge;
 		this.gaCreatedAt = gaCreatedAt;
 		this.gaUpdatedAt = gaUpdatedAt;
+	//	this.groupEntity = groupEntity;
 	}
+
+
+	
 	
 	
  
