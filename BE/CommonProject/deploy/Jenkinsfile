@@ -2,6 +2,8 @@ pipeline {
   agent any
 
   parameters {
+    
+    booleanParam(name : 'BUILD_GRADLE_BUILD', defaultValue : true, description : 'BUILD_GRADLE_BUILD')
     booleanParam(name : 'BUILD_DOCKER_IMAGE', defaultValue : true, description : 'BUILD_DOCKER_IMAGE')
     booleanParam(name : 'RUN_TEST', defaultValue : true, description : 'RUN_TEST')
     booleanParam(name : 'PUSH_DOCKER_IMAGE', defaultValue : true, description : 'PUSH_DOCKER_IMAGE')
@@ -16,6 +18,21 @@ pipeline {
   }
 
   stages {
+
+     stage('============= Service Gradle Project Build ==============') {
+         when { expression { return params.BUILD_GRADLE_BUILD } }
+         steps {
+            dir("${env.WORKSPACE}/BE/CommonProject/") {
+                 sh './gradlew clean bootJar'
+             }
+         }
+        post {
+            always{
+                echo "Gradle build success!"
+            }
+        }
+    }
+
     stage('============= Build Docker Image ==============') {
          when { expression { return params.BUILD_DOCKER_IMAGE } }
          steps {
