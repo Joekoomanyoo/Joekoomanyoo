@@ -1,9 +1,7 @@
 package com.project.common.controller;
 
 
-import com.project.common.dto.GroupAttributeDto;
-import com.project.common.dto.GroupDto;
-import com.project.common.dto.UserSignupDto;
+import com.project.common.dto.UserDto;
 import com.project.common.service.GroupMemberService;
 import com.project.common.service.GroupService;
 
@@ -12,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor   
@@ -34,8 +30,8 @@ public class GroupMemberController {
     // 그륩 탈퇴
     @ApiOperation(value = "모임 전체 목록 조회, 모임 정보(GroupDto) 반환")
     @DeleteMapping("/withdraw")
-    public ResponseEntity<Void> withdrawGroup(@PathVariable long groupSeq, @RequestBody UserSignupDto userSignupDto) throws Exception{
-    	groupMemberService.withdrawGroup(groupSeq,userSignupDto);
+    public ResponseEntity<Void> withdrawGroup(@PathVariable long groupSeq, @RequestBody UserDto userDto) throws Exception{
+    	groupMemberService.withdrawGroup(groupSeq, userDto);
     	return new ResponseEntity<>(HttpStatus.OK);
     }
     

@@ -3,11 +3,10 @@ package com.project.common.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.project.common.dto.UserSignupDto;
+import com.project.common.dto.UserDto;
 import com.project.common.repository.GroupAttributeRepository;
 import com.project.common.repository.GroupMemberRepository;
 import com.project.common.repository.GroupRepository;
-import com.project.common.service.exception.GroupMemberNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,8 +20,8 @@ public class GroupMemberService{
 	private final UserService userService;
 	
 	@Transactional
-    public void withdrawGroup(long groupSeq, UserSignupDto userSignupDto) {
-        long userSeq = userSignupDto.getUserSeq();
+    public void withdrawGroup(long groupSeq, UserDto userDto) {
+        long userSeq = userDto.getUserSeq();
 
     //    groupMemberRepository.findByGroupIdAndMemberId(groupSeq, userSeq)
   //              .orElseThrow(GroupMemberNotFoundException::new);

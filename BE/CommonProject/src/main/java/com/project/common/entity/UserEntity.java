@@ -2,6 +2,7 @@ package com.project.common.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +20,6 @@ import java.util.Date;
 @NoArgsConstructor
 // 모든 필드 값을 파라미터로 받는 생성자 생성
 @AllArgsConstructor
-@Getter
-@Setter
 @Table(name = "tb_user")
 // UserDetails는 시큐리티가 관리하는 객체
 public class UserEntity implements UserDetails{
@@ -49,7 +48,7 @@ public class UserEntity implements UserDetails{
     @Column(length = 100)
     private String profileImgUrl;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String jwtToken;
 
     @Column(length = 50)

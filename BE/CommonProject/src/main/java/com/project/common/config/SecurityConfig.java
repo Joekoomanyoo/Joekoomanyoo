@@ -25,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustomUserDetailService userDetailsService;
+    private CustomUserDetailService customUserDetailService;
     @Autowired
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -54,18 +54,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests() // 요청에 대한 사용권한 체크
                 .antMatchers("/login/**").permitAll()
-                .anyRequest().permitAll() // 그외 나머지 요청은 누구나 접근 가능
+                .anyRequest().permitAll() // 그외 나머지 요청은 인증만 되면 다 들어갈 수 있는 주소
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
-                        UsernamePasswordAuthenticationFilter.class);
-        // JwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 전에 넣는다
+                        UsernamePasswordAuthenticationFilter.class);// JwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 전에 넣는다
+
     }
 
 
+    // 일반 로그인
     // 인증방법을 의미한다.
     // CustomUserDetailService 객체에 인증방법이 있으며, 패스워드 인코더 설정해놓음
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(customUserDetailService).passwordEncoder(passwordEncoder());
     }
 
 }

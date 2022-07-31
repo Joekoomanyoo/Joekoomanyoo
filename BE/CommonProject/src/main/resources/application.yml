@@ -15,5 +15,3 @@ spring:
     properties:
       hibernate:
         format_sql: true  # 로깅에 표시되는 sql을 보기 좋게 해준다
-
-        
