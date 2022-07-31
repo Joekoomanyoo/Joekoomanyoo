@@ -23,6 +23,7 @@ pipeline {
          when { expression { return params.BUILD_GRADLE_BUILD } }
          steps {
             dir("${env.WORKSPACE}/BE/CommonProject/") {
+                sh 'chmod +x ./gradlew'
                  sh './gradlew clean bootJar'
              }
          }
