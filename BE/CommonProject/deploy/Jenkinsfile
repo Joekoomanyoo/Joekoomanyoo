@@ -1,0 +1,92 @@
+pipeline {
+  agent any
+
+  parameters {
+    
+    booleanParam(name : 'BUILD_GRADLE_BUILD', defaultValue : true, description : 'BUILD_GRADLE_BUILD')
+    booleanParam(name : 'BUILD_DOCKER_IMAGE', defaultValue : true, description : 'BUILD_DOCKER_IMAGE')
+    booleanParam(name : 'RUN_TEST', defaultValue : true, description : 'RUN_TEST')
+    booleanParam(name : 'PUSH_DOCKER_IMAGE', defaultValue : true, description : 'PUSH_DOCKER_IMAGE')
+    booleanParam(name : 'DEPLOY', defaultValue : true, description : 'DEPLOY')
+    booleanParam(name : 'FINISH', defaultValue : true, description : 'FINISH')
+  }
+
+  environment {
+    REGION = "ap-northeast-2"
+    repository = "eejh22/d102"  //docker hub id와 repository 이름
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub') // jenkins에 등록해 놓은 docker hub credentials 이름
+  }
+
+  stages {
+
+     stage('============= Service Gradle Project Build ==============') {
+         when { expression { return params.BUILD_GRADLE_BUILD } }
+         steps {
+            dir("${env.WORKSPACE}/BE/CommonProject/") {
+                sh 'chmod +x ./gradlew'
+                 sh './gradlew clean bootJar'
+             }
+         }
+        post {
+            always{
+                echo "Gradle build success!"
+            }
+        }
+    }
+
+    stage('============= Build Docker Image ==============') {
+         when { expression { return params.BUILD_DOCKER_IMAGE } }
+         steps {
+            dir("${env.WORKSPACE}/BE/CommonProject") {
+                 sh 'docker build -t $repository:latest .'
+             }
+         }
+        post {
+            always{
+                echo "Docker build success!"
+            }
+        }
+    }
+    stage('============ Run test code ===========') {
+        when { expression { return params.RUN_TEST } }
+        steps {
+            sh 'docker stop server && docker rm server'
+            sh'docker run -d --rm --name server -p 8081:8080 $repository:latest'
+            echo "Stage Test!!!!!!"
+            sh('docker stop server')
+        }
+    }
+    stage('============ Push Docker Image ============') {
+        when { expression { return params.PUSH_DOCKER_IMAGE } }
+        steps {
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin' // docker hub 로그인
+            sh 'docker push $repository:latest'
+            echo "Push Docker Image to Docker Hub"
+        }
+    }
+
+     stage('============ Deploy ==============') {
+        when { expression { return params.DEPLOY } }
+        steps {
+           sh 'docker run -d --name server -p 8081:8080 -v /home/ubuntu/docker/volume:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -u root $repository:latest'
+            echo "Deploy"
+        }
+    }
+
+
+     stage('============ Finish =============') {
+        when { expression { return params.FINISH } }
+        steps {
+          sh 'docker images -qf dangling=true | xargs -I{} docker rmi {}'
+            echo "FINISH"
+        }
+    }
+ 
+  }
+
+  post {
+    cleanup{
+        echo "Post cleanup"
+    }
+  }
+}

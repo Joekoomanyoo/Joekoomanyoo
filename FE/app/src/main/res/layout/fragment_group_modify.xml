@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".view.group.GroupModifyFragment">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="10dp">
+
+                <ImageView
+                    android:id="@+id/btn_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+                <TextView
+                    android:id="@+id/header_create_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:text="모임 만들기"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </com.google.android.material.appbar.MaterialToolbar>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <androidx.core.widget.NestedScrollView
+                        android:id="@+id/scrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:fillViewport="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/btn_create_group"
+                        app:layout_constraintVertical_bias="1.0">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginHorizontal="20dp">
+
+                            <TextView
+                                android:id="@+id/header_group_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:text="모임 이름"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <EditText
+                                android:id="@+id/et_group_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/edit_border"
+                                android:elevation="10dp"
+                                android:hint="모임 이름"
+                                android:paddingStart="20dp"
+                                android:textColorHint="@color/main_color"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/header_group_name" />
+
+                            <TextView
+                                android:id="@+id/header_group_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:text="스터디 설명"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/et_group_name" />
+
+                            <EditText
+                                android:id="@+id/et_group_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/edit_border"
+                                android:elevation="10dp"
+                                android:hint="스터디 설명"
+                                android:paddingStart="20dp"
+                                android:textColorHint="@color/main_color"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/header_group_content" />
+
+                            <TextView
+                                android:id="@+id/header_group_term"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:text="모임 기간"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/et_group_content" />
+
+                            <EditText
+                                android:id="@+id/et_group_start_date"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/edit_border"
+                                android:elevation="10dp"
+                                android:hint="시작일"
+                                android:paddingStart="20dp"
+                                android:textColorHint="@color/gray"
+                                app:layout_constraintEnd_toStartOf="@id/header_from"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/header_group_term" />
+
+                            <TextView
+                                android:id="@+id/header_from"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="-"
+                                android:textColor="@color/black"
+                                android:textSize="32sp"
+                                app:layout_constraintEnd_toStartOf="@id/et_group_end_date"
+                                app:layout_constraintStart_toEndOf="@id/et_group_start_date"
+                                app:layout_constraintTop_toBottomOf="@id/header_group_term" />
+
+                            <EditText
+                                android:id="@+id/et_group_end_date"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/edit_border"
+                                android:elevation="10dp"
+                                android:hint="종료일"
+                                android:paddingStart="20dp"
+                                android:textColorHint="@color/gray"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/header_from"
+                                app:layout_constraintTop_toBottomOf="@id/header_group_term" />
+
+                            <TextView
+                                android:id="@+id/header_maximum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:text="최대 인원"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintEnd_toStartOf="@id/header_age"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/et_group_start_date" />
+
+                            <Spinner
+                                android:id="@+id/spinner_maximum"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:spinnerMode="dropdown"
+                                app:layout_constraintStart_toStartOf="@id/header_maximum"
+                                app:layout_constraintTop_toBottomOf="@id/header_maximum" />
+
+                            <TextView
+                                android:id="@+id/header_age"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="130dp"
+                                android:layout_marginTop="10dp"
+                                android:text="나이대"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toEndOf="@id/header_maximum"
+                                app:layout_constraintTop_toBottomOf="@id/et_group_start_date" />
+
+                            <Spinner
+                                android:id="@+id/spinner_age"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:spinnerMode="dropdown"
+                                app:layout_constraintStart_toStartOf="@id/header_age"
+                                app:layout_constraintTop_toBottomOf="@id/header_age" />
+
+                            <TextView
+                                android:id="@+id/header_region"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:text="지역"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/spinner_age" />
+
+                            <Spinner
+                                android:id="@+id/spinner_region"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
+                                android:spinnerMode="dropdown"
+                                app:layout_constraintStart_toStartOf="@id/header_region"
+                                app:layout_constraintTop_toBottomOf="@id/header_region" />
+
+                            <TextView
+                                android:id="@+id/header_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="165dp"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginEnd="20dp"
+                                android:text="비밀번호"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                app:layout_constraintStart_toEndOf="@id/header_region"
+                                app:layout_constraintTop_toBottomOf="@id/spinner_age" />
+
+                            <EditText
+                                android:id="@+id/et_password"
+                                android:layout_width="150dp"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/edit_border"
+                                android:elevation="10dp"
+                                android:hint="비밀번호"
+                                android:paddingStart="20dp"
+                                android:textColorHint="@color/gray"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/spinner_region"
+                                app:layout_constraintTop_toBottomOf="@id/header_password" />
+
+                            <CheckBox
+                                android:id="@+id/cb_kids"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:buttonTint="#000000"
+                                android:text="아이 동반 여부"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/spinner_region" />
+
+                            <CheckBox
+                                android:id="@+id/cb_global"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:buttonTint="#000000"
+                                android:text="글로벌 여부"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/cb_kids" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.core.widget.NestedScrollView>
+                    <Button
+                        android:id="@+id/btn_create_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@color/main_color"
+                        android:text="모임 만들기"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/scrollView"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
