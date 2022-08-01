@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +22,7 @@ public class UserModifyService{
 
     private final PasswordEncoder passwordEncoder;
 
+    // 사용자 정보 불러오기
     @Transactional
     public UserDto userInfo(int userSeq) {
         // 사용자 번호로 사용자 찾기
@@ -29,6 +31,8 @@ public class UserModifyService{
         return UserMapper.MAPPER.toDto(userEntity);
     }
 
+    
+    // 사용자 정보 변경하기
     @Transactional
     public boolean modifyInfo(UserModifyDto userModifyDto){
         // 변경할 사용자 번호
@@ -51,6 +55,21 @@ public class UserModifyService{
             userEntity.encodePassword(this.passwordEncoder);
             
             userRepository.save(userEntity);
+            return true;
+        }
+    }
+
+    // 비밀번호 확인
+    @Transactional
+    public boolean checkPassword(Map<String, String> userInfo){
+        UserEntity userEntity = userRepository.findByUserSeq(Integer.parseInt(userInfo.get("userSeq")));
+
+        // 만약 비밀번호가 다를 경우
+        if(!passwordEncoder.matches(userInfo.get("userPassword"),userEntity.getUserPassword())){
+            return false;
+        }
+        // 비밀번호가 같을 경우
+        else{
             return true;
         }
     }

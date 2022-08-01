@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @Api("UserModifyController")
 @RestController
 @RequiredArgsConstructor    // autowired 안써도됨
@@ -47,6 +49,24 @@ public class UserModifyController {
             return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
         }
         // 수정이 안되었을 경우
+        else{
+            return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+        }
+    }
+
+    /**
+     * 사용자 비밀번호 확인하기
+     * @param userInfo
+     * @return success / fail
+     */
+    @GetMapping("/check-password")
+    @ApiOperation(value="사용자 비밀번호 확인하기", response = String.class)
+    public ResponseEntity<String> checkPassword(@ApiParam(value="사용자 비밀번호 확인 ( userPassword )") @RequestBody Map<String, String> userInfo){
+        // 비밀번호가 맞으면
+        if(userModifyService.checkPassword(userInfo)){
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        }
+        // 비밀번호가 틀리면
         else{
             return new ResponseEntity<String>(FAIL, HttpStatus.OK);
         }

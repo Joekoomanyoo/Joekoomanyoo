@@ -91,19 +91,19 @@ public class UserController {
     @ApiOperation(value = "일반 로그인", response = String.class)
     @PostMapping("/login")
     public ResponseEntity<String> login(@ApiParam(value="userId, userPassword", required = true) @RequestBody Map<String, String> userInfo) {
-        UserEntity loginUser = userRepository.findByUserId(userInfo.get("userId"));
+        UserDto userDto = userService.login(userInfo);
 
         // 정보가 없는경우
-        if(loginUser == null){
+        if(userDto == null){
            return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
 
         // 비밀번호가 틀린 경우
-        if (!passwordEncoder.matches(userInfo.get("userPassword"), loginUser.getPassword())) {
+        if (!passwordEncoder.matches(userInfo.get("userPassword"), userDto.getUserPassword())) {
             return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
 
-        String token = jwtTokenProvider.createToken(loginUser.getUsername());
+        String token = jwtTokenProvider.createToken(userDto.getUserSeq(),userDto.getUserId());
 
         return ResponseEntity.ok(token);
     }
