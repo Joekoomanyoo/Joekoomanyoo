@@ -24,7 +24,9 @@ public class UserService{
 
     // 회원가입
     @Transactional
-    public boolean saveOrUpdateUser(UserEntity userEntity){
+    public boolean saveOrUpdateUser(UserDto userDto){
+        UserEntity userEntity = UserMapper.MAPPER.toEntity(userDto);
+
         // 패스워스 암호화
         userEntity.encodePassword(this.passwordEncoder);
 

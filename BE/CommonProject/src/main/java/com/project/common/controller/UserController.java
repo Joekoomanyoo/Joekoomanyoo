@@ -52,18 +52,20 @@ public class UserController {
         }
 
         // 초기 설정값
+        userDto.setSocialLoginType("none");
         userDto.setIsDeleted('N');
         userDto.setUserRegistedAt(LocalDateTime.now());
         userDto.setUserUpdatedAt(LocalDateTime.now());
         // DTO에 저장된 값을 Entity 값을 바꾸기
         // Service와 Controller 이동은 DTO
         // Controller와 DB 이동은 Entity
-        if (userService.saveOrUpdateUser(UserMapper.MAPPER.toEntity(userDto))) {
+        if (userService.saveOrUpdateUser(userDto)) {
             return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
         } else {
             return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
     }
+
 
     /**
      * 회원가입 이메일 인증
@@ -87,14 +89,11 @@ public class UserController {
 
         // 이메일이 생성되었으면 success
         if(mailDto != null){
-            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+            return new ResponseEntity<String>(num, HttpStatus.OK);
         }else{
             return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
     }
-
-
-
 
     /**
      * 회원 탈퇴 기능
@@ -137,7 +136,8 @@ public class UserController {
             return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
 
-        String token = jwtTokenProvider.createToken(userDto.getUserSeq(),userDto.getUserId());
+        // 토큰 생성
+        String token = jwtTokenProvider.createAccessToken(userDto.getUserSeq(),userDto.getUserId());
 
         return ResponseEntity.ok(token);
     }

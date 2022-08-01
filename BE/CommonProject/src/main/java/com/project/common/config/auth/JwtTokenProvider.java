@@ -1,5 +1,6 @@
 package com.project.common.config.auth;
 
+import com.project.common.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -7,7 +8,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,7 +26,11 @@ public class JwtTokenProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
     // 생명 주기 1시간
-    private static long tokenValidTime = 60 * 60 * 1000L;
+    private static long ACCESS_TOKEN_VALID_TIME = 60 * 60 * 1000L;
+
+    // 생명 주기 1달
+    private static long REFRESH_TOKEN_VALID_TIME = 30 * 24 * 60 * 60 * 1000L;
+
 
     private final UserDetailsService userDetailsService;
 
@@ -36,17 +40,26 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    // JWT 토큰 생성
-    public String createToken(int userPk, String userId){
-        Claims claims = Jwts.claims().setSubject(String.valueOf(userPk)).setSubject(userId); // JWT payload 에 저장되는 정보단위
+    public String createToken(int userSeq, String userId){
+        Claims claims = Jwts.claims().setSubject(String.valueOf(userSeq)).setSubject(userId); // JWT payload 에 저장되는 정보단위
         Date now = new Date();
-        return Jwts.builder()
+    // JWT Access 토큰 생성
+        String accessToken = Jwts.builder()
                 .setClaims(claims) // 정보 저장
                 .setIssuedAt(now) // 토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + tokenValidTime)) // set Expire Time
+                .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_VALID_TIME)) // set Expire Time
                 .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
                 // signature 에 들어갈 secret값 세팅
                 .compact();
+
+    // JWT Refresh 토큰 생성
+        String refreshToken = Jwts.builder()
+                .setClaims(claims)
+                    .setIssuedAt(now)
+                    .setExpiration(new Date(now.getTime() + REFRESH_TOKEN_VALID_TIME))
+                    .signWith(SignatureAlgorithm.HS256, secretKey)
+                    .compact();
+return "";
     }
 
 
@@ -74,14 +87,39 @@ public class JwtTokenProvider {
         return request.getHeader("Authorization");
     }
 
+
     // 토큰의 유효성 + 만료일자 확인
-    public boolean validateToken(String jwtToken) {
+    public String validateRefreshToken(UserEntity userEntity) {
+
+        String refreshToken = userEntity.getJwtToken();
         try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
-            return !claims.getBody().getExpiration().before(new Date());
+            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(refreshToken);
+        // 만약 refresh 토큰의 만료시간이 지나지 않은 경우 새로운 access 토큰 생성
+            if(!claims.getBody().getExpiration().before(new Date())){
+                return recreationAccessToken((Integer) claims.getBody().get("userSeq"), (String) claims.getBody().get("userId"));
+            }
         } catch (Exception e) {
-            return false;
+            // refresh 토큰이 만료되었을 경우, 로그인이 필요하다.
+            return null;
         }
+        return null;
+    }
+
+    // Access Token 재 생성 ( 만료되어서 )
+    private String recreationAccessToken(int userSeq, String userId) {
+        Claims claims = Jwts.claims().setSubject(String.valueOf(userSeq)).setSubject(userId); // JWT payload 에 저장되는 정보단위
+        Date now = new Date();
+
+        //Access Token
+        String accessToken = Jwts.builder()
+                .setClaims(claims) // 정보 저장
+                .setIssuedAt(now) // 토큰 발행 시간 정보
+                .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_VALID_TIME)) // set Expire Time
+                .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
+                // signature 에 들어갈 secret값 세팅
+                .compact();
+
+        return accessToken;
     }
 
 
