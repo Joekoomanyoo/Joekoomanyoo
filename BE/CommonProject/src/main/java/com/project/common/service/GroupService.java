@@ -1,7 +1,6 @@
 package com.project.common.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +11,6 @@ import com.project.common.dto.GroupDto;
 import com.project.common.dto.GroupMapper;
 import com.project.common.entity.GroupAttributeEntity;
 import com.project.common.entity.GroupEntity;
-import com.project.common.entity.UserEntity;
 import com.project.common.repository.GroupAttributeRepository;
 import com.project.common.repository.GroupRepository;
 

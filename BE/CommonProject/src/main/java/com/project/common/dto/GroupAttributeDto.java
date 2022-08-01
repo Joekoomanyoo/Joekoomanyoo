@@ -1,7 +1,6 @@
 package com.project.common.dto;
 
 import com.project.common.entity.GroupAttributeEntity;
-import com.project.common.entity.GroupEntity;
 
 import lombok.Builder;
 import lombok.Getter;

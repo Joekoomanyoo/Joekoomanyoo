@@ -11,18 +11,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class UserModifyDto {
     private int userSeq;
-    private String userId;
     private String userNickname;
     private String userPassword;
     private String userBirth;
-    private String socialLoginType;
     private char userGender;
     private String profileImgUrl;
-    private String jwtToken;
-    private String fcmToken;
-    private LocalDateTime userRegistedAt;
     private LocalDateTime userUpdatedAt;
-    private char isDeleted;
 }

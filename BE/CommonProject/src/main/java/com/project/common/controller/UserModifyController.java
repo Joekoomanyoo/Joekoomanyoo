@@ -1,18 +1,15 @@
 package com.project.common.controller;
 
 import com.project.common.dto.UserDto;
-import com.project.common.service.UserModifyServiceImpl;
-import com.project.common.service.UserService;
+import com.project.common.dto.UserModifyDto;
+import com.project.common.service.UserModifyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api("UserModifyController")
 @RestController
@@ -20,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/modify")
 public class UserModifyController {
 
-    private UserModifyServiceImpl userModifyService;
+    private static final String SUCCESS ="success";
+    private static final String FAIL ="fail";
+    private final UserModifyService userModifyService;
 
     /**
      * 사용자 정보 불러오기
@@ -34,5 +33,22 @@ public class UserModifyController {
         return new ResponseEntity<UserDto>(userModifyService.userInfo(userSeq), HttpStatus.OK);
     }
 
+    /**
+     * 사용자 정보 변경하기
+     * @param userModifyDto
+     * @return success / fail
+     */
 
+    @PutMapping()
+    @ApiOperation(value="사용자 정보 변경하기", response = String.class)
+    public ResponseEntity<String> modifyInfo(@ApiParam(value="사용자 변경 정보 ( userModifyDto ) ") @RequestBody UserModifyDto userModifyDto){
+        // 만약 성공적으로 수정했을 경우
+        if(userModifyService.modifyInfo(userModifyDto)){
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        }
+        // 수정이 안되었을 경우
+        else{
+            return new ResponseEntity<String>(FAIL, HttpStatus.OK);
+        }
+    }
 }

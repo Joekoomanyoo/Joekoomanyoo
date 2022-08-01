@@ -1,16 +1,13 @@
 package com.project.common.entity;
 
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 @Builder
@@ -54,13 +51,11 @@ public class UserEntity implements UserDetails{
     @Column(length = 50)
     private String fcmToken;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date userRegistedAt;
+    @Column
+    private LocalDateTime userRegistedAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @UpdateTimestamp
-    private Date userUpdatedAt;
+    @Column
+    private LocalDateTime userUpdatedAt;
 
     @Column(length = 1, nullable = false)
     private char isDeleted;

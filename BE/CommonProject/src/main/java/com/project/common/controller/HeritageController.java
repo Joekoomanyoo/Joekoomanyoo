@@ -1,7 +1,7 @@
 package com.project.common.controller;
 
 import com.project.common.dto.HeritageDto;
-import com.project.common.service.HeritageServiceImpl;
+import com.project.common.service.HeritageService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/api/heritage")
 public class HeritageController {
 
-    private final HeritageServiceImpl heritageService;
+    private final HeritageService heritageService;
 
     /**
      * 문화 유산 정보 불러오기

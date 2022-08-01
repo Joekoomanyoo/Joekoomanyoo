@@ -5,7 +5,7 @@ import com.project.common.dto.UserDto;
 import com.project.common.dto.UserMapper;
 import com.project.common.entity.UserEntity;
 import com.project.common.repository.UserRepository;
-import com.project.common.service.UserServiceImpl;
+import com.project.common.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Api("UserController")
@@ -26,7 +27,7 @@ import java.util.Map;
 public class UserController {
     private static final String SUCCESS = "success";
     private static final String FAIL = "fail";
-    private final UserServiceImpl userService;
+    private final UserService userService;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -39,7 +40,8 @@ public class UserController {
 
     @ApiOperation(value = "일반 회원가입", response = String.class)
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@ApiParam(value="userId, password, userNickname, userBirth, socialLoginType, userGender, profileImgUrl, jwtToken, fcmToken, userRegistedAt, userUpdatedAt, isDeleted 받습니다.") @RequestBody UserDto userDto, BindingResult bindingResult) {
+    public ResponseEntity<String> signup(@ApiParam(value="userId, password, userNickname, userBirth, socialLoginType, userGender, profileImgUrl, jwtToken, fcmToken, userRegistedAt, userUpdatedAt, isDeleted 받습니다.")
+                                             @RequestBody UserDto userDto, BindingResult bindingResult) {
 
         // validation
         if (bindingResult.hasErrors()) {
@@ -48,6 +50,8 @@ public class UserController {
 
         // 초기 설정값
         userDto.setIsDeleted('N');
+        userDto.setUserRegistedAt(LocalDateTime.now());
+        userDto.setUserUpdatedAt(LocalDateTime.now());
         // DTO에 저장된 값을 Entity 값을 바꾸기
         // Service와 Controller 이동은 DTO
         // Controller와 DB 이동은 Entity
