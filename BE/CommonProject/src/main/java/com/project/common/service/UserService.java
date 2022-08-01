@@ -35,6 +35,7 @@ public class UserService{
         }
     }
 
+
     // 회원 탈퇴
     @Transactional
     public boolean resignUser(String userId){
@@ -76,6 +77,7 @@ public class UserService{
             return false;
         }
     }
+
 
 
 }

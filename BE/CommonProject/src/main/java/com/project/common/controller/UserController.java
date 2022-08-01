@@ -1,10 +1,12 @@
 package com.project.common.controller;
 
 import com.project.common.config.auth.JwtTokenProvider;
+import com.project.common.dto.MailDto;
 import com.project.common.dto.UserDto;
 import com.project.common.dto.UserMapper;
 import com.project.common.entity.UserEntity;
 import com.project.common.repository.UserRepository;
+import com.project.common.service.MailService;
 import com.project.common.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,8 +30,9 @@ public class UserController {
     private static final String SUCCESS = "success";
     private static final String FAIL = "fail";
     private final UserService userService;
+    private final MailService mailService;
+
     private final JwtTokenProvider jwtTokenProvider;
-    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     /**
@@ -61,6 +64,37 @@ public class UserController {
             return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
     }
+
+    /**
+     * 회원가입 이메일 인증
+     * @param userId
+     * @return success / fail
+     */
+    @GetMapping("/emailAuth/{userId}")
+    @ApiOperation(value = "회원가입 이메일 인증", response = String.class)
+    public ResponseEntity<String> emailAuth(@ApiParam(value = "사용자 ID ( Email )", required = true) @PathVariable("userId") String userId){
+
+        // 번호 랜덤으로 만들어주기
+        String num = "";
+        for(int i=0; i<6; i++){
+            num += (int)(Math.random()*10);
+        }
+        // 이메일 생성
+        MailDto mailDto = mailService.createMail(num, userId);
+        
+        // 이메일 전송
+        mailService.sendMail(mailDto);
+
+        // 이메일이 생성되었으면 success
+        if(mailDto != null){
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
 
     /**
      * 회원 탈퇴 기능
@@ -140,6 +174,8 @@ public class UserController {
             return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
     }
+
+
 
 
 

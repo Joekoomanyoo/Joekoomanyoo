@@ -6,7 +6,7 @@ spring:
     username: root
     password: 1234
   # jpa 설정
-  jpa:  
+  jpa:
     database: mysql
     show-sql: true  # jpa나 hibernate를 통해 CRUD를 실행하면 해당 CRUD의 sql을 로깅으로 보여준다
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  # 각기 다른 DB에 맞는 SQL 문법을 처리
@@ -15,3 +15,12 @@ spring:
     properties:
       hibernate:
         format_sql: true  # 로깅에 표시되는 sql을 보기 좋게 해준다
+  # mail 설정
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kimjs1133557799@gmail.com # gamil 아이디
+    password: prpxodxthamrmnbq          # 앱 사용 비밀번호
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
