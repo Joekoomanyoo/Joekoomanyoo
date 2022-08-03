@@ -10,12 +10,17 @@ import com.ssafy.heritage.data.dto.User
 import com.ssafy.heritage.data.repository.Repository
 import com.ssafy.heritage.event.Event
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import java.util.regex.Pattern
 
 private const val TAG = "JoinViewModel___"
 
 class JoinViewModel : ViewModel() {
+
+    var job: Job? = null
 
     private val repository = Repository.get()
 
@@ -27,6 +32,8 @@ class JoinViewModel : ViewModel() {
     val id = MutableLiveData<String>()
 
     val id_verification_code = MutableLiveData<String>()
+
+    val id_verification_code_check = MutableLiveData<String>()
 
     val nickname = MutableLiveData<String>()
 
@@ -54,11 +61,26 @@ class JoinViewModel : ViewModel() {
                 val res = checkId(id.value!!, textInputLayout)
 
                 // 중복검사 통과시
-                if (res) {
+                if (res == true) {
                     // 서버로 인증 요청 전송
+                    var response: Response<String>? = null
+                    job = launch(Dispatchers.Main) {
+                        response = repository.emailAuth(id.value!!)
+                    }
+                    job?.join()
 
-                    ////// 요청 전송 성공시 true 리턴
-                    true
+                    response?.let {
+                        Log.d(TAG, "sendIdVeroficationCode response: $it")
+                        if (it.isSuccessful) {
+                            // 요청 전송 성공시 인증번호 저장
+                            id_verification_code_check.value = it.body()
+                            true
+                        } else {
+                            Log.d(TAG, "${it.code()}")
+                            makeToast("인증 요청 전송에 실패하였습니다")
+                            false
+                        }
+                    }
                 } else {
                     // 중복검사 실패시
                     makeToast("중복된 이메일입니다")
@@ -75,14 +97,20 @@ class JoinViewModel : ViewModel() {
     // 아이디 중복검사
     suspend fun checkId(id: String, textInputLayout: TextInputLayout) =
         withContext(Dispatchers.Main) {
-            // 서버에서 아이디 중복여부 요청
 
-            repository.checkEmail(id).let { response ->
-                // 중복된 아이디가 없는 경우
-                if (response.isSuccessful) {
+            // 서버에서 아이디 중복여부 요청
+            var response: Response<String>? = null
+            job = launch(Dispatchers.Main) {
+                response = repository.checkEmail(id)
+            }
+            job?.join()
+
+            response?.let {
+                Log.d(TAG, "checkId response: $it")
+                if (it.isSuccessful) {
                     true
                 } else {
-                    Log.d(TAG, "${response.code()}")
+                    Log.d(TAG, "${it.code()}")
                     makeTextInputLayoutError(textInputLayout, "중복된 이메일입니다")
                     makeToast("중복된 이메일입니다")
                     false
@@ -91,16 +119,15 @@ class JoinViewModel : ViewModel() {
         }
 
     // id 이메일 인증하기 (클릭)
-    fun idVerify(textInputLayout: TextInputLayout): Boolean {
+    suspend fun idVerify(textInputLayout: TextInputLayout) = withContext(Dispatchers.Main) {
 
-        // 서버로 인증번호 보내고 맞게 입력했는지 검사
-
-        //// 인증번호 통과했을 경우
-        return true
-
-        //// 실패했을 경우
-        makeTextInputLayoutError(textInputLayout, "인증번호가 틀렸습니다")
-//            return false
+        // 인증번호 맞게 입력했는지 검사
+        if (id_verification_code.value.equals(id_verification_code_check.value)) {
+            true
+        } else {
+            makeTextInputLayoutError(textInputLayout, "인증번호가 틀렸습니다")
+            false
+        }
     }
 
     // 닉네임 중복확인 (클릭)
@@ -115,9 +142,9 @@ class JoinViewModel : ViewModel() {
                 makeToast("사용 가능한 닉네임입니다")
                 true
             } else {
-                Log.d(TAG, "${response.code()}")
-                makeTextInputLayoutError(textInputLayout, "중복된 이메일입니다")
-                makeToast("중복된 이메일입니다")
+                isCheckedNickname.value = false
+                makeTextInputLayoutError(textInputLayout, "중복된 닉네임입니다")
+                makeToast("중복된 닉네임입니다")
                 false
             }
         }
@@ -175,15 +202,13 @@ class JoinViewModel : ViewModel() {
     suspend fun join() = withContext(Dispatchers.Main) {
         // 서버에 회원가입 요청
         val user = User(
-            null,
-            null,
+            0,
             id.value!!,
             nickname.value!!,
             pw.value!!,
             birth.value!!,
-            "normal",
+            "none",
             gender.value!!,
-            "",
             "",
             "",
             "",
@@ -199,6 +224,71 @@ class JoinViewModel : ViewModel() {
             else {
                 Log.d(TAG, "${response.code()}")
                 false
+            }
+        }
+    }
+
+    // 소셜 회원가입
+    suspend fun socialJoin(id: String) = withContext(Dispatchers.Main) {
+        val user = User(
+            0,
+            id,
+            nickname.value!!,
+            "0",
+            birth.value!!,
+            "social",
+            gender.value!!,
+            "",
+            "",
+            "",
+            "",
+            'N'
+        )
+
+        Log.d(TAG, "socialJoin: $user")
+
+        var response: Response<String>? = null
+        job = launch(Dispatchers.Main) {
+            response = repository.socialSignup(user)
+        }
+        job?.join()
+
+        response?.let {
+            Log.d(TAG, "socialJoin response: $response")
+            // 회원가입 성공 시
+            if (it.isSuccessful) {
+                socialLogin(id)
+            }
+            // 회원가입 실패 시
+            else {
+                Log.d(TAG, "${it.code()}")
+                null
+            }
+        }
+    }
+
+    // 소셜 로그인 시킴
+    suspend fun socialLogin(id: String) = withContext(Dispatchers.Main) {
+
+        val map = HashMap<String, String>()
+
+        map.put("userId", id)
+        map.put("userPassword", "0")
+
+        var response: Response<String>? = null
+        job = launch(Dispatchers.Main) {
+            response = repository.socialLogin(map)
+        }
+        job?.join()
+
+        response?.let {
+            Log.d(TAG, "socialLogin response: $response")
+            if (it.isSuccessful) {
+                it.body()
+            } else {
+                Log.d(TAG, "${it.code()}")
+                makeToast("소셜 로그인 실패")
+                null
             }
         }
     }

@@ -29,7 +29,6 @@ class PasswordRequestFragment :
             //// 비밀번호가 일치하면 받아온 유저정보를 가지고 ProfileModifyFragment로 이동
             val user = User(
                 null,
-                null,
                 "id",
                 "nickname",
                 "",
@@ -40,14 +39,13 @@ class PasswordRequestFragment :
                 "",
                 "",
                 "",
-                "",
                 'N'
             ) // 더미 데이터
             val action =
                 PasswordRequestFragmentDirections.actionPasswordRequestFragmentToProfileModifyFragment(
                     user
                 )
-            findNavController().navigate(action)
+            findNavController().navigate(action,)
         }
     }
 

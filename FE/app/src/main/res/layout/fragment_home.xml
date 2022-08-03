@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="user"
+            type="com.ssafy.heritage.data.dto.User" />
+    </data>
+
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -85,10 +92,11 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="동굴속불상님"
+                android:text="@{user.userNickname}"
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile_img"
                 app:layout_constraintStart_toEndOf="@id/iv_profile_img"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="동굴속불상님" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_my_group"

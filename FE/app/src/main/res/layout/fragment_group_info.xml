@@ -26,14 +26,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp">
+
                 <ImageButton
                     android:id="@+id/btn_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="17dp"
+                    android:layout_height="31dp"
                     android:background="@drawable/ic_baseline_arrow_back_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/header_create_group"

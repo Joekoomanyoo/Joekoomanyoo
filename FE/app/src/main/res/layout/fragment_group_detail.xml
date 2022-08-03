@@ -49,7 +49,7 @@
             android:layout_margin="30dp"
             android:textSize="20sp"
             tools:text="0000.00.00"
-            android:text="0000.00.00"
+            android:text="@{String.valueOf(groupDetailInfo.startDate)}"
             app:layout_constraintTop_toBottomOf="@id/tv_group_name"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -70,7 +70,7 @@
             android:layout_margin="30dp"
             android:textSize="20sp"
             tools:text="0000.00.00"
-            android:text="0000.00.00"
+            android:text="@{String.valueOf(groupDetailInfo.endDate)}"
             app:layout_constraintTop_toBottomOf="@id/tv_group_name"
             app:layout_constraintStart_toEndOf="@id/header_from"/>
 

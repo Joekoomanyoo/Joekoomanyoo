@@ -46,7 +46,22 @@
             android:id="@+id/action_groupListFragment_to_groupModifyFragment"
             app:destination="@id/groupModifyFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/groupMapFragment"
+        android:name="com.ssafy.heritage.view.group.GroupMapFragment"
+        android:label="GroupMapFragment">
+        <action
+            android:id="@+id/action_groupMapFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupDetailFragment"
+        android:name="com.ssafy.heritage.view.group.GroupDetailFragment"
+        android:label="GroupDetailFragment">
+        <argument
+            android:name="groupInfo"
+            app:argType="com.ssafy.heritage.data.remote.response.GroupListResponse" />
+    </fragment>
     <!--heritage-->
     <fragment
         android:id="@+id/heritageListFragment"
@@ -96,6 +111,9 @@
         <action
             android:id="@+id/action_profileFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_passwordRequestFragment"
+            app:destination="@id/passwordRequestFragment" />
     </fragment>
     <fragment
         android:id="@+id/passwordRequestFragment"

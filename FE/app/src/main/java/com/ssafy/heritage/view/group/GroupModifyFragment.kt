@@ -25,10 +25,10 @@ class GroupModifyFragment :
     private var global: Char = 'N'
     private var name: String = ""
     private var content: String = ""
-    private var startDate:String = ""
-    private var endDate:String = ""
+    private var startDate:Int = 0
+    private var endDate:Int = 0
     private var groupAccessType:Char = 'N'
-    private var groupPwd=""
+    private var groupPwd: String=""
 
     override fun init() {
 
@@ -78,8 +78,8 @@ class GroupModifyFragment :
             //groupInfo = GroupListResponse(0,0,"",0,"",'N',"",'Y', 'R',2, groupAttribute = )
             name = etGroupName.text.toString()
             content = etGroupContent.text.toString()
-            startDate = etGroupStartDate.text.toString()
-            endDate = etGroupEndDate.text.toString()
+            startDate = etGroupStartDate.text.toString().toInt()
+            endDate = etGroupEndDate.text.toString().toInt()
 
             when {
                 name == "" -> {
@@ -88,15 +88,15 @@ class GroupModifyFragment :
                 content == "" -> {
                     Toast.makeText(context, "모임 설명을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
-                startDate == "" -> {
+                startDate == 0 -> {
                     Toast.makeText(context, "모임 시작일을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
-                endDate == "" -> {
+                endDate == 0 -> {
                     Toast.makeText(context, "모임 종료일을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            if (name != "" && content != "" && startDate != "" && endDate != "") {
+            if (name != "" && content != "" && startDate != 0 && endDate != 0) {
                 if (etGroupPassword.text.toString() != "") {
                     // 공개
                     groupAccessType = '0'
@@ -106,13 +106,17 @@ class GroupModifyFragment :
                     groupPwd = etGroupPassword.text.toString()
                 }
                 // groupMaker : 현재 유저 번호로 넣어야함
-                groupInfo = GroupListResponse(0,0,name, "잠만보", content,groupAccessType,groupPwd,'Y', 'R',max,
-                    region,age,child,global,startDate,endDate)
+
+                groupInfo = GroupListResponse("잠만보", name, content,groupAccessType,groupPwd,'Y', 'R',max,
+                    region,startDate,endDate,age,child,global,0)
                 groupViewModel.insertGroup(groupInfo)
             }
             //if ()
         }
 
+        btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
     }
 
     // 스피너 선택 아이템 선택 시

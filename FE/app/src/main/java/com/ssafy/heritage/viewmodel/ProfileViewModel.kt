@@ -104,14 +104,12 @@ class ProfileViewModel : ViewModel() {
         // 서버에 회원가입 요청
         val user = User(
             null,
-            null,
             user.value!!.userId,
             user.value!!.userNickname,
             user.value!!.userPassword,
             user.value!!.userBirth,
             "normal",
             user.value!!.userGender,
-            "",
             "",
             "",
             "",

@@ -1,5 +1,6 @@
  package com.ssafy.heritage.view.login
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -7,9 +8,12 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
+import com.ssafy.heritage.ApplicationClass
 import com.ssafy.heritage.R
 import com.ssafy.heritage.base.BaseFragment
 import com.ssafy.heritage.databinding.FragmentJoinBinding
+import com.ssafy.heritage.util.JWTUtils
+import com.ssafy.heritage.view.HomeActivity
 import com.ssafy.heritage.viewmodel.JoinViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -56,11 +60,12 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
             CoroutineScope(Dispatchers.Main).launch {
 
                 // 인증번호 요청 성공시
-                if (joinViewModel.sendIdVeroficationCode(tilId)) {
+                if (joinViewModel.sendIdVeroficationCode(tilId) == true) {
                     tilIdVertification.visibility = View.VISIBLE
                     btnIdVertify.visibility = View.VISIBLE
                 } else {
-
+                    tilIdVertification.visibility = View.GONE
+                    btnIdVertify.visibility = View.GONE
                 }
 
             }
@@ -70,15 +75,18 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
         // 인증하기 클릭시
         btnIdVertify.setOnClickListener {
 
-            // 인증번호 인증 성공시
-            if (joinViewModel.idVerify(tilIdVertification)) {
-                tilId.isEnabled = false
-                btnRequestIdVertification.isEnabled = false
-                tilIdVertification.editText?.setText("인증성공")
-                tilIdVertification.isEnabled = false
-                btnIdVertify.isEnabled = false
+            CoroutineScope(Dispatchers.Main).launch {
 
-                motionlayout.transitionToEnd()
+                // 인증번호 인증 성공시
+                if (joinViewModel.idVerify(tilIdVertification)) {
+                    tilId.isEnabled = false
+                    btnRequestIdVertification.isEnabled = false
+                    tilIdVertification.editText?.setText("인증성공")
+                    tilIdVertification.isEnabled = false
+                    btnIdVertify.isEnabled = false
+
+                    motionlayout.transitionToEnd()
+                }
             }
         }
 
@@ -124,20 +132,43 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
 
             // 유효성 검사 다 통과하면 회원가입 요청
             CoroutineScope(Dispatchers.Main).launch {
-                // 회원가입 성공시
-                if (joinViewModel.join()) {
 
-                    // 소셜 회원가입시 홈으로 바로이동
-                    if (type.equals("social")) {
-                        makeToast("회원가입성공")
+                // 소셜 회원가입인 경우
+                if (type.equals("social")) {
+                    val id = arguments?.getString("id")
+
+                    val token = joinViewModel.socialJoin(id!!)
+
+                    Log.d(TAG, "token: $token")
+
+                    // 소셜 회원가입 성공시
+                    if (token != null) {
+                        ApplicationClass.sharedPreferencesUtil.saveToken(token)
+
+                        val user = JWTUtils.decoded(token)
+                        if (user != null) {
+                            Intent(requireContext(), HomeActivity::class.java).apply {
+                                startActivity(this)
+                            }
+                        } else {
+                            makeToast("유저 정보 획득에 실패하였습니다")
+                        }
                     }
-                    // 일반 회원가입시 로그인 화면으로 이동
+                    // 회원가입 실패한 경우
                     else {
+                        makeToast("회원가입 오류")
+                    }
+                }
+                // 일반 회원가입인 경우
+                else {
+                    // 일반 회원가입 성공시
+                    if (joinViewModel.join()) {
                         findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
                     }
+                    // 회원가입 실패한 경우
+                    else {
 
-                } else {
-
+                    }
                 }
             }
         }
@@ -189,6 +220,8 @@ class JoinFragment : BaseFragment<FragmentJoinBinding>(R.layout.fragment_join) {
 
         // 소셜 로그인인 경우
         if (type.equals("social")) {
+            headerPw.visibility = View.GONE
+            headerPwCheck.visibility = View.GONE
             tilPw.visibility = View.GONE
             tilPwCheck.visibility = View.GONE
             motionlayout.transitionToEnd()

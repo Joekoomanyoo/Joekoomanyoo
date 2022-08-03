@@ -1,6 +1,6 @@
 package com.ssafy.heritage.view.feed
 
-import com.ssafy.feed.adpter.FeedListAdapter
+import com.ssafy.heritage.adpter.FeedListAdapter
 import com.ssafy.heritage.R
 import com.ssafy.heritage.base.BaseFragment
 import com.ssafy.heritage.databinding.FragmentFeedListBinding

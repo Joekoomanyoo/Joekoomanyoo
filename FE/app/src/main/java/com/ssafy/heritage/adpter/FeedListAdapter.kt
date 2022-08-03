@@ -1,4 +1,4 @@
-package com.ssafy.feed.adpter
+package com.ssafy.heritage.adpter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

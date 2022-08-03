@@ -1,31 +1,75 @@
 package com.ssafy.heritage.view
 
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import android.util.Base64
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.ssafy.heritage.ApplicationClass.Companion.sharedPreferencesUtil
 import com.ssafy.heritage.R
 import com.ssafy.heritage.base.BaseActivity
+import com.ssafy.heritage.data.dto.User
 import com.ssafy.heritage.databinding.ActivityHomeBinding
+import com.ssafy.heritage.viewmodel.GroupViewModel
 import com.ssafy.heritage.viewmodel.HeritageViewModel
+import com.ssafy.heritage.viewmodel.UserViewModel
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+
 
 private const val TAG = "HomeActivity___"
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     private val heritageViewModel by viewModels<HeritageViewModel>()
+    private val userViewModel by viewModels<UserViewModel>()
     private lateinit var navController: NavController
     private var backButtonTime = 0L
 
     override fun init() {
+        intent?.getParcelableExtra<User>("user")?.let { userViewModel.setUser(it) }
+
         initNavigation()
+
+        initObserver()
+
+        getHashKey()
     }
 
     override fun onStart() {
         super.onStart()
         heritageViewModel.getHeritageList()
+    }
+
+    private fun initObserver() {
+        userViewModel.user.observe(this) {
+            Log.d(TAG, "initObserver: $it")
+        }
+    }
+
+    private fun getHashKey() {
+        var packageInfo: PackageInfo? = null
+        try {
+            packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+        if (packageInfo == null) Log.e("KeyHash", "KeyHash:null")
+        for (signature in packageInfo!!.signatures) {
+            try {
+                val md: MessageDigest = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+            } catch (e: NoSuchAlgorithmException) {
+                Log.e("KeyHash", "Unable to get MessageDigest. signature=$signature", e)
+            }
+        }
     }
 
     // 네비게이션 연결

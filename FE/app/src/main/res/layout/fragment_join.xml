@@ -89,6 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="example@mail.com"
+                    android:inputType="textEmailAddress"
                     android:text="@={joinVM.id}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,6 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="인증번호 입력"
+                    android:inputType="number"
                     android:text="@={joinVM.id_verification_code}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -251,12 +253,14 @@
                     app:boxStrokeWidth="1dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/header_pw">
+                    app:layout_constraintTop_toBottomOf="@id/header_pw"
+                    app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="password1234^^"
+                        android:inputType="textPassword"
                         android:text="@={joinVM.pw}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -287,12 +291,14 @@
                     app:boxStrokeWidth="1dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/header_pw_check">
+                    app:layout_constraintTop_toBottomOf="@id/header_pw_check"
+                    app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="password1234^^"
+                        android:inputType="textPassword"
                         android:text="@={joinVM.pw_check}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -344,15 +350,6 @@
                     app:spinner_popup_elevation="14dp"
                     tools:ignore="HardcodedText,UnusedAttribute" />
 
-                <!--                <NumberPicker-->
-                <!--                    android:id="@+id/np_year"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:value="@{joinVM.birth}"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                    app:layout_constraintStart_toStartOf="parent"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@id/header_birth" />-->
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/header_gender"
                     android:layout_width="0dp"
@@ -393,43 +390,20 @@
                     app:spinner_popup_elevation="14dp"
                     tools:ignore="HardcodedText,UnusedAttribute" />
 
-                <!--                <RadioGroup-->
-                <!--                    android:id="@+id/rg_gender"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:orientation="horizontal"-->
-                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                    app:layout_constraintStart_toStartOf="@id/gl_verti_50"-->
-                <!--                    app:layout_constraintTop_toBottomOf="@id/header_gender">-->
-
-                <!--                    <androidx.appcompat.widget.AppCompatRadioButton-->
-                <!--                        android:id="@+id/gender_f"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:onClick="@{() -> joinVM.genderTypeChanged('M')}"-->
-                <!--                        android:text="남자"-->
-                <!--                        android:value="F" />-->
-
-                <!--                    <androidx.appcompat.widget.AppCompatRadioButton-->
-                <!--                        android:id="@+id/gender_m"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:onClick="@{() -> joinVM.genderTypeChanged('F')}"-->
-                <!--                        android:text="여자"-->
-                <!--                        android:value="M" />-->
-                <!--                </RadioGroup>-->
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_join"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="120dp"
                     android:layout_marginBottom="40dp"
                     android:background="@drawable/button_join"
                     android:text="회원가입"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spinner_gender"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

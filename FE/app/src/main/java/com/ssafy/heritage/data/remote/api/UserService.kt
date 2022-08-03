@@ -15,6 +15,8 @@ interface UserService {
     suspend fun checkNickname(@Path("userNickname") userNickname: String): Response<String>     // 이미 값이 있으면 false, 없으면 true
 
     // 이메일 인증하기
+    @GET("/api/user/emailAuth/{userId}")
+    suspend fun emailAuth(@Path("userId") userId: String): Response<String>
 
     // 일반 회원가입
     @POST("/api/user/signup")
@@ -27,4 +29,16 @@ interface UserService {
     // 일반 로그인
     @POST("/api/user/login")
     suspend fun login(@Body map: HashMap<String, String>): Response<String>
+
+    // 소셜 아이디 중복 확인
+    @GET("/api/user/social/checkId/{userId}")
+    suspend fun socialCheckId(@Path("userId") userId: String): Response<String>     // 이미 값이 있으면 false, 없으면 true
+
+    // 소셜 로그인
+    @POST("/api/user/social/login")
+    suspend fun socialLogin(@Body map: HashMap<String, String>): Response<String>
+
+    // 소셜 회원가입
+    @POST("/api/user/social/signup")
+    suspend fun socialSignup(@Body user: User): Response<String>
 }

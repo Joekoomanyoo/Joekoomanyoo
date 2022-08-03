@@ -82,6 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="example@mail.com"
+                    android:inputType="textEmailAddress"
                     android:text="@={loginVM.id}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,47 +113,39 @@
                 app:boxStrokeWidth="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header_pw">
+                app:layout_constraintTop_toBottomOf="@id/header_pw"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="password1234^^"
+                    android:inputType="textPassword"
                     android:text="@={loginVM.pw}" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:layout_marginTop="8dp"
-                android:id="@+id/checkbox_auto_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="자동로그인"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_pw" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_find_pw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:text="비밀번호 찾기"
-                app:layout_constraintBottom_toBottomOf="@id/checkbox_auto_login"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/checkbox_auto_login" />
+                app:layout_constraintTop_toBottomOf="@id/et_pw" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/button_login"
                 android:text="로그인"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/checkbox_auto_login" />
+                app:layout_constraintTop_toBottomOf="@id/btn_find_pw" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login_social"
