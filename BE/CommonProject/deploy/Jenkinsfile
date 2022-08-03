@@ -19,7 +19,7 @@ pipeline {
 
   stages {
 
-     stage('============= Service Gradle Project Build ==============') {
+     stage('============== Service Gradle Project Build ==============') {
          when { expression { return params.BUILD_GRADLE_BUILD } }
          steps {
             dir("${env.WORKSPACE}/BE/CommonProject/") {
@@ -50,7 +50,7 @@ pipeline {
     stage('============ Run test code ===========') {
         when { expression { return params.RUN_TEST } }
         steps {
-            sh 'docker stop server && docker rm server'
+             sh 'docker stop server && docker rm server'
             sh'docker run -d --rm --name server -p 8081:8080 $repository:latest'
             echo "Stage Test!!!!!!"
             sh('docker stop server')

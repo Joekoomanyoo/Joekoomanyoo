@@ -1,15 +1,25 @@
 package com.project.common.entity;
 
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.*;
+
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.*;
-import java.util.Collection;
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Builder
@@ -49,19 +59,12 @@ public class UserEntity implements UserDetails{
     @Column(length = 100)
     private String profileImgUrl;
 
-    @Column(length = 50, nullable = false)
-    private String jwtToken;
-
     @Column(length = 50)
     private String fcmToken;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date userRegistedAt;
+    private LocalDateTime userRegistedAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @UpdateTimestamp
-    private Date userUpdatedAt;
+    private LocalDateTime userUpdatedAt;
 
     @Column(length = 1, nullable = false)
     private char isDeleted;
@@ -70,12 +73,16 @@ public class UserEntity implements UserDetails{
         this.userPassword = passwordEncoder.encode(this.userPassword);
     }
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<String> roles = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.roles.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
-
     @Override
     public String getPassword() {
         return this.userPassword;

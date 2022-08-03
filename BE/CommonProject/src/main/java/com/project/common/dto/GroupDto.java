@@ -4,7 +4,6 @@ package com.project.common.dto;
 
 import java.util.Date;
 
-import com.project.common.entity.GroupAttributeEntity;
 import com.project.common.entity.GroupEntity;
 
 import lombok.Builder;
@@ -19,59 +18,74 @@ import lombok.ToString;
 @ToString
 public class GroupDto {
 	private long groupSeq;
-	private String groupName;
 	private String attachSeq;
-	private long groupMaker;
+	private String groupMaker;
+	private String groupName;
 	private String groupDescription;
-	private int groupMaxCount;
 	private char groupAccessType;
 	private String groupPassword;
 	private String groupStatus;
 	private char groupIsActive;
+	private int groupTotalCount;
+	private String groupRegion;
+	private int groupStartDate;
+	private int groupEndDate;
+	private char groupChild;
+	private char groupGlobal;
+	private int groupAgeRange;
 	private Date groupCreatedAt;
 	private Date groupUpdatedAt;
 
-    private GroupAttributeEntity groupAttributeEntity;
-	
-
 	@Builder
-	public GroupDto(long groupSeq, String groupName, String attachSeq, long groupMaker, String groupDescription,
-			int groupMaxCount, char groupAccessType, String groupPassword, String groupStatus, char groupIsActive,
-			Date groupCreatedAt, Date groupUpdatedAt, GroupAttributeEntity groupAttributeEntity) {
+	public GroupDto(long groupSeq, String attachSeq, String groupMaker, String groupName, String groupDescription,
+			char groupAccessType, String groupPassword, String groupStatus, char groupIsActive, int groupTotalCount,
+			String groupRegion, int groupStartDate, int groupEndDate, char groupChild, char groupGlobal,
+			int groupAgeRange, Date groupCreatedAt, Date groupUpdatedAt) {
 		super();
 		this.groupSeq = groupSeq;
-		this.groupName = groupName;
 		this.attachSeq = attachSeq;
 		this.groupMaker = groupMaker;
+		this.groupName = groupName;
 		this.groupDescription = groupDescription;
-		this.groupMaxCount = groupMaxCount;
 		this.groupAccessType = groupAccessType;
 		this.groupPassword = groupPassword;
 		this.groupStatus = groupStatus;
 		this.groupIsActive = groupIsActive;
+		this.groupTotalCount = groupTotalCount;
+		this.groupRegion = groupRegion;
+		this.groupStartDate = groupStartDate;
+		this.groupEndDate = groupEndDate;
+		this.groupChild = groupChild;
+		this.groupGlobal = groupGlobal;
+		this.groupAgeRange = groupAgeRange;
 		this.groupCreatedAt = groupCreatedAt;
 		this.groupUpdatedAt = groupUpdatedAt;
-		this.groupAttributeEntity = groupAttributeEntity;
 	}
-	
 
-	
     public GroupEntity toEntity(){
         return GroupEntity.builder()
                 .groupSeq(groupSeq)
-                .groupName(groupName)
                 .attachSeq(attachSeq)
                 .groupMaker(groupMaker)
+                .groupName(groupName)
                 .groupDescription(groupDescription)
-                .groupMaxCount(groupMaxCount)
                 .groupAccessType(groupAccessType)
                 .groupPassword(groupPassword)
                 .groupStatus(groupStatus)
                 .groupIsActive(groupIsActive)
+                .groupTotalCount(groupTotalCount)
+                .groupRegion(groupRegion)
+                .groupStartDate(groupStartDate)
+                .groupEndDate(groupEndDate)
+                .groupChild(groupChild)
+                .groupGlobal(groupGlobal)
+                .groupAgeRange(groupAgeRange)
                 .groupCreatedAt(groupCreatedAt)
                 .groupUpdatedAt(groupUpdatedAt).build();
 
     }
+
+
 
 
 

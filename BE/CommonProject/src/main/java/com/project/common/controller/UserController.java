@@ -1,13 +1,13 @@
 package com.project.common.controller;
 
-import com.project.common.config.auth.JwtTokenProvider;
-import com.project.common.dto.UserSignupDto;
+import com.project.common.config.JwtTokenProvider;
+import com.project.common.dto.MailDto;
+import com.project.common.dto.UserDto;
 import com.project.common.entity.UserEntity;
 import com.project.common.repository.UserRepository;
-import com.project.common.service.UserServiceImpl;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import com.project.common.service.MailService;
+import com.project.common.service.UserService;
+import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Map;
+
 
 @Api("UserController")
 @RestController
@@ -25,36 +28,83 @@ import java.util.Map;
 public class UserController {
     private static final String SUCCESS = "success";
     private static final String FAIL = "fail";
-    private final UserServiceImpl userService;
+    private final UserService userService;
+    private final MailService mailService;
 
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     * 일반 회원 가입
+     * @param userDto
+     * @return success / fail
+     */
 
-    @ApiOperation(value = "일반 회원가입, 입력을 성공하면 'success'를  실패하면 'fail'을 반환", response = String.class)
+    @ApiOperation(value = "일반 회원가입", response = String.class)
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@ApiParam(value="userId, password, userNickname, userBirth, socialLoginType, userGender, profileImgUrl, jwtToken, fcmToken, userRegistedAt, userUpdatedAt, isDeleted 받습니다.") @RequestBody UserSignupDto userSignupDto, BindingResult bindingResult) {
+    public ResponseEntity<String> signup(@ApiParam(value="회원 가입 : 회원정보 ( 아이디, 비밀번호, 닉네임, 성별, 생년월일 ) ", required = true) @RequestBody UserDto userDto, BindingResult bindingResult) {
 
         // validation
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
 
-        // DTO에 저장된 값을 Entity 값을 바꾸기
-        // Service와 Controller 이동은 DTO
-        // Controller와 DB 이동은 Entity
-        if (userService.saveOrUpdateUser(userSignupDto.toEntity())) {
-            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-        } else {
+        userRepository.save(UserEntity.builder()
+                .userSeq(0)
+                .userId(userDto.getUserId())
+                .userPassword(passwordEncoder.encode(userDto.getUserPassword()))
+                .userBirth(userDto.getUserBirth())
+                .userNickname(userDto.getUserNickname())
+                .userGender(userDto.getUserGender())
+                .userRegistedAt(LocalDateTime.now())
+                .userUpdatedAt(LocalDateTime.now())
+                .socialLoginType("none")
+                .fcmToken("")
+                .profileImgUrl("")
+                .isDeleted('N')
+                        .roles(Collections.singletonList("ROLE_USER"))
+                .build());
+        return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+    }
+
+
+    /**
+     * 회원가입 이메일 인증
+     * @param userId
+     * @return success / fail
+     */
+    @GetMapping("/emailAuth/{userId}")
+    @ApiOperation(value = "회원가입 이메일 인증", response = String.class)
+    public ResponseEntity<String> emailAuth(@ApiParam(value = "사용자 ID ( Email )", required = true) @PathVariable("userId") String userId){
+
+        // 번호 랜덤으로 만들어주기
+        String num = "";
+        for(int i=0; i<6; i++){
+            num += (int)(Math.random()*10);
+        }
+        // 이메일 생성
+        MailDto mailDto = mailService.createMail(num, userId);
+
+        // 이메일 전송
+        mailService.sendMail(mailDto);
+
+        // 이메일이 생성되었으면 success
+        if(mailDto != null){
+            return new ResponseEntity<String>(num, HttpStatus.OK);
+        }else{
             return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
         }
     }
 
+    /**
+     * 회원 탈퇴 기능
+     * @param userId
+     * @return success / fail
+     */
 
     @DeleteMapping("/resign/{userId}")
-    @ApiOperation(value = "회원탈퇴기능, 회원탈퇴가 되면 true, 안되면 false", response = String.class)
+    @ApiOperation(value = "회원탈퇴기능", response = String.class)
     public ResponseEntity<String> resign(@ApiParam(value="사용자 ID ( Email )", required = true) @PathVariable("userId") String userId){
         // 회원이 존재하지 X -> 삭제 불가
         if(!userService.resignUser(userId)){
@@ -62,36 +112,51 @@ public class UserController {
         }
         // 회원이 존재 -> 삭제 완료
         else{
-            return new ResponseEntity<String>(SUCCESS, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
         }
-
     }
 
-    @ApiOperation(value = "일반 로그인, JWT 발급, 입력을 성공하면 'success'를  실패하면 'fail'을 반환", response = String.class)
+    /**
+     * 일반 로그인, JWT 발급
+     *
+     * @param userInfo
+     * @return token
+     */
+
+    @ApiOperation(value = "일반 로그인", response = String.class)
     @PostMapping("/login")
-    public ResponseEntity<String> login(@ApiParam(value="userId, userPassword", required = true) @RequestBody Map<String, String> userInfo) {
-        UserEntity loginUser = userRepository.findByUserId(userInfo.get("userId"));
-
-        // 정보가 없는경우
-        if(loginUser == null){
-           return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> login(@RequestBody Map<String, String> userInfo) {
+        UserEntity userEntity = userRepository.findByUserId(userInfo.get("userId"));
+        
+        // 아이디가 없는 경우
+        if(userEntity == null){
+            return new ResponseEntity<String>(FAIL+" id", HttpStatus.BAD_REQUEST);
         }
 
-        // 비밀번호가 틀린 경우
-        if (!passwordEncoder.matches(userInfo.get("userPassword"), loginUser.getPassword())) {
-            return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
+        // 비밀번호가 없는 경우
+        if (!passwordEncoder.matches(userInfo.get("userPassword"),userEntity.getUserPassword())) {
+            return new ResponseEntity<String>(FAIL +" password", HttpStatus.BAD_REQUEST);
         }
 
-        String token = jwtTokenProvider.createToken(loginUser.getUsername());
-
-
-        return ResponseEntity.ok(token);
+        // 토큰 생성해서 리턴
+        String token = jwtTokenProvider.createToken(userEntity.getUserSeq(),userEntity.getUsername(), userEntity.getRoles());
+        System.out.println(token);
+        if(token != null){
+            return new ResponseEntity<String>(token, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<String>(FAIL+" token", HttpStatus.BAD_REQUEST);
+        }
     }
 
 
+    /**
+     * 이메일 중복 검사
+     * @param userId
+     * @return success / fail
+     */
 
     @GetMapping("/check/email/{userId}")
-    @ApiOperation(value = "이메일 중복 검사, 이미 값이 있으면 false, 중복된 것이 없으면 true", response = String.class)
+    @ApiOperation(value = "이메일 중복 검사", response = String.class)
     public ResponseEntity<?> checkEmail(@ApiParam(value="사용자 ID ( Email )", required = true)@PathVariable("userId") String userId){
         if(userService.checkEmail(userId)){
             return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
@@ -100,8 +165,14 @@ public class UserController {
         }
     }
 
+    /**
+     * 닉네임 중복 검사
+     * @param userNickname
+     * @return success / fail
+     */
+
     @GetMapping("/check/nickname/{userNickname}")
-    @ApiOperation(value = "닉네임 중복 검사, 이미 값이 있으면 false, 중복된 것이 없으면 true", response = String.class)
+    @ApiOperation(value = "닉네임 중복 검사", response = String.class)
     public ResponseEntity<?> checkNickname(@ApiParam(value="사용자 닉네임 ( Nickname )", required = true)@PathVariable("userNickname") String userNickname){
         if(userService.checkNickname(userNickname)){
             return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
@@ -110,20 +181,16 @@ public class UserController {
         }
     }
 
-
-    @GetMapping("/tokenvalidate")
-    @ApiOperation(value = "사용자의 jwt token이 유효한지 체크")
-    public ResponseEntity<?> checkTokenValidate(HttpServletRequest request){
-
-        // 인증 확인후 돌리기
-        String token = request.getHeader("Authorization");
-
-        if (token == null || !jwtTokenProvider.validateToken(token)) {
-            return new ResponseEntity<String>(FAIL, HttpStatus.BAD_REQUEST);
-        }
-
-        return ResponseEntity.ok().body(null);
+    // 토큰에서 사용자 정보 가져오기
+    @GetMapping("/me")
+    public UserDto getCurrentUser(HttpServletRequest request) { //(1)
+            String token = request.getHeader("Authorization");
+            if(token == null || !jwtTokenProvider.validateToken(token)){
+                return null;
+            }else{
+                String userId = jwtTokenProvider.getUserId(token);
+                return userService.find(userId);
+            }
     }
-
 }
 
