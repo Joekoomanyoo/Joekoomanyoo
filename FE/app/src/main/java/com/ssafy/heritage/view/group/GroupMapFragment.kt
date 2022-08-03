@@ -111,4 +111,5 @@ class GroupMapFragment : BaseFragment<FragmentGroupMapBinding>(R.layout.fragment
     private fun makeToast(msg: String) {
         Toast.makeText(requireActivity(), msg, Toast.LENGTH_SHORT).show()
     }
+
 }

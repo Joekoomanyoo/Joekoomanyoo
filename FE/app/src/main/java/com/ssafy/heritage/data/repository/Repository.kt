@@ -7,7 +7,9 @@ import com.ssafy.heritage.data.remote.api.RetrofitInstance.groupApi
 import com.ssafy.heritage.data.remote.api.RetrofitInstance.heritageApi
 import com.ssafy.heritage.data.remote.api.RetrofitInstance.userApi
 import com.ssafy.heritage.data.remote.response.GroupListResponse
+import com.ssafy.heritage.data.remote.response.HeritageReviewListResponse
 import retrofit2.Response
+import retrofit2.http.Body
 
 class Repository constructor(context: Context) {
 
@@ -45,6 +47,10 @@ class Repository constructor(context: Context) {
 
     // heritage
     suspend fun selectAllHeritage(): Response<List<Heritage>> = heritageApi.selectAllHeritage()
+    suspend fun insertHeritageReview(body: HeritageReviewListResponse): Response<HeritageReviewListResponse> = heritageApi.insertHeritageReview(body)
+    suspend fun selectAllHeritageReviews(): Response<List<HeritageReviewListResponse>> = heritageApi.selectAllHeritageReviews()
+
+
 
     companion object {
         private var INSTANCE: Repository? = null

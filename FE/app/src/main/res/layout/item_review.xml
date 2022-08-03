@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="heritageReviewListResponse"
+            type="com.ssafy.heritage.data.remote.response.HeritageReviewListResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_heritage_review_user_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_heritage_review_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{heritageReviewListResponse.userSeq}"
+            tools:text="매일우유학자"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_heritage_review_user_img"
+            app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"
+            app:layout_constraintTop_toTopOf="@+id/iv_heritage_review_user_img"
+            app:layout_constraintVertical_bias="0.269" />
+
+        <TextView
+            android:id="@+id/tv_heritage_review_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{heritageReviewListResponse.heritageReviewRegistedAt}"
+            tools:text="22.7.29"
+            android:textColor="#8E8E93"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_heritage_review_user_id"
+            app:layout_constraintStart_toEndOf="@+id/tv_heritage_review_user_id"
+            app:layout_constraintTop_toTopOf="@+id/tv_heritage_review_user_id"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_heritage_review_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:text="@{heritageReviewListResponse.heritageReviewText}"
+            tools:text="극락전 측면입니다."
+            app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"
+            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_review_user_id" />
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/iv_heritage_review_img"-->
+        <!--                android:layout_width="307dp"-->
+        <!--                android:layout_height="200dp"-->
+        <!--                android:layout_marginStart="16dp"-->
+        <!--                android:layout_marginTop="10dp"-->
+        <!--                android:scaleType="centerCrop"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_review_content"-->
+        <!--                tools:src="@tools:sample/backgrounds/scenic" />-->
+
+        <ImageView
+            android:id="@+id/iv_heritage_review_img"
+            android:background="@drawable/square_background_stroke_gray"
+            android:layout_width="307dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@{heritageReviewListResponse.attachSeq}"
+            tools:srcCompat="@drawable/feed_img_2"
+            app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"
+            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_review_content"/>
+
+        <View
+            android:layout_width="365dp"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="3.5dp"
+            android:layout_marginTop="10dp"
+            android:background="#e5e5ea"
+            app:layout_constraintTop_toBottomOf="@id/iv_heritage_review_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

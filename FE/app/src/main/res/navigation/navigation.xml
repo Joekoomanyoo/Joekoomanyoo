@@ -81,6 +81,12 @@
         <argument
             android:name="heritage"
             app:argType="com.ssafy.heritage.data.dto.Heritage" />
+        <action
+            android:id="@+id/action_heritageDetailFragment_to_heritageInfoFragment"
+            app:destination="@id/heritageInfoFragment" />
+        <action
+            android:id="@+id/action_heritageDetailFragment_to_heritageReviewFragment"
+            app:destination="@id/heritageReviewFragment" />
     </fragment>
 
     <!--feed-->
@@ -161,4 +167,22 @@
         android:id="@+id/settingFragment"
         android:name="com.ssafy.heritage.view.setting.SettingFragment"
         android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/groupMapFragment"
+        android:name="com.ssafy.heritage.view.group.GroupMapFragment"
+        android:label="GroupMapFragment">
+        <action
+            android:id="@+id/action_groupMapFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heritageInfoFragment"
+        android:name="com.ssafy.heritage.view.heritage.HeritageInfoFragment"
+        android:label="HeritageInfoFragment" >
+
+    </fragment>
+    <fragment
+        android:id="@+id/heritageReviewFragment"
+        android:name="com.ssafy.heritage.view.heritage.HeritageReviewFragment"
+        android:label="HeritageReviewFragment" />
 </navigation>

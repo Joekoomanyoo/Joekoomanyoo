@@ -1,4 +1,4 @@
-package com.ssafy.heritage.view.login
+ package com.ssafy.heritage.view.login
 
 import android.content.Intent
 import android.util.Log

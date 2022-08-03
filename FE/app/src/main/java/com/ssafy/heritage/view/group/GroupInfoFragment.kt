@@ -51,7 +51,8 @@ class GroupInfoFragment : BaseFragment<FragmentGroupInfoBinding>(R.layout.fragme
             calenderFragment = GroupCalenderFragment()
             mapFragment = GroupMapFragment()
 
-            childFragmentManager.beginTransaction().replace(R.id.frame_layout_tab, detailFragment).commit()
+            childFragmentManager.beginTransaction()
+                .replace(R.id.frame_layout_tab, detailFragment).commit()
 
             // 탭 클릭 시 이벤트
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{

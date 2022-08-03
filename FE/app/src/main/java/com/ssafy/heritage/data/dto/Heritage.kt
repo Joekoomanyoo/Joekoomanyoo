@@ -8,7 +8,7 @@ import java.io.Serializable
 data class Heritage(
     val heritageSeq: Int,           // 문화유산 번호
     val heritageName: String,       // 문화유산 이름
-    val heritageTime: String,       // 문화유산 시대
+    val heritageEra: String,       // 문화유산 시대
     val heritageAddress: String,    // 문화유산 주소
     val heritageCategory: String,   // 문화유산 카테고리
     val heritageLng: String,        // 문화유산 경도

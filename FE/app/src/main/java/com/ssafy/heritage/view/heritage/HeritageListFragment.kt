@@ -46,6 +46,9 @@ class HeritageListFragment :
 
             heritageAdapter.heritageListClickListener = object : HeritageListClickListener {
                 override fun onClick(position: Int, heritage: Heritage, view: View) {
+
+                    heritageViewModel.setHeritage(heritage)
+
                     // 해당 문화유산의 상세페이지로 이동
                     parentFragmentManager
                         .beginTransaction()

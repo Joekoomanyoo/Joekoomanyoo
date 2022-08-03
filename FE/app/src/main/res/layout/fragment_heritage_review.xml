@@ -4,68 +4,160 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.heritage.HeritageReviewFragment">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.heritage.HeritageReviewFragment">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_review_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/view_write"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_heritage_review_user_img"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:fillViewport="true">-->
 
-    <TextView
-        android:id="@+id/tv_heritage_review_user_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="매일우유학자"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_heritage_review_user_img"
-        app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"
-        app:layout_constraintTop_toTopOf="@+id/iv_heritage_review_user_img"
-        app:layout_constraintVertical_bias="0.269" />
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
 
-    <TextView
-        android:id="@+id/tv_heritage_review_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="22.7.29"
-        android:textColor="#8E8E93"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_heritage_review_user_img"
-        app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"
-        app:layout_constraintTop_toBottomOf="@+id/tv_heritage_review_user_id"
-        app:layout_constraintVertical_bias="0.0" />
+<!--                <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                    android:id="@+id/iv_heritage_review_user_img"-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginStart="24dp"-->
+<!--                    android:layout_marginTop="24dp"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    tools:src="@tools:sample/avatars" />-->
 
-    <ImageView
-        android:id="@+id/iv_heritage_review_img"
-        android:layout_width="365dp"
-        android:layout_height="250dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="13dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_heritage_review_user_img"
-        tools:src="@tools:sample/backgrounds/scenic" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_heritage_review_user_id"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:text="매일우유학자"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/iv_heritage_review_user_img"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/iv_heritage_review_user_img"-->
+<!--                    app:layout_constraintVertical_bias="0.269" />-->
 
-    <TextView
-        android:id="@+id/tv_heritage_review_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="24dp"
-        android:text="극락전 측면입니다."
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_heritage_review_img" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_heritage_review_date"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:text="22.7.29"-->
+<!--                    android:textColor="#8E8E93"-->
+<!--                    android:textSize="12sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/tv_heritage_review_user_id"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/tv_heritage_review_user_id"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/tv_heritage_review_user_id"-->
+<!--                    app:layout_constraintVertical_bias="0.0" />-->
 
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_heritage_review_content"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="2dp"-->
+<!--                    android:text="극락전 측면입니다."-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tv_heritage_review_user_id" />-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--    &lt;!&ndash;            <ImageView&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:id="@+id/iv_heritage_review_img"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_width="307dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_height="200dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_marginStart="16dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:layout_marginTop="10dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;                android:scaleType="centerCrop"&ndash;&gt;-->
+<!--    &lt;!&ndash;                app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"&ndash;&gt;-->
+<!--    &lt;!&ndash;                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_review_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                tools:src="@tools:sample/backgrounds/scenic" />&ndash;&gt;-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_heritage_review_img"-->
+<!--                    android:background="@drawable/square_background_stroke_gray"-->
+<!--                    android:layout_width="307dp"-->
+<!--                    android:layout_height="200dp"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    tools:srcCompat="@drawable/feed_img_2"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/iv_heritage_review_user_img"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tv_heritage_review_content"/>-->
+
+<!--                <View-->
+<!--                    android:layout_width="365dp"-->
+<!--                    android:layout_height="0.5dp"-->
+<!--                    android:layout_marginBottom="3.5dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:background="#e5e5ea"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/iv_heritage_review_img"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        </ScrollView>-->
+        <View
+            android:id="@+id/view_write"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:background="#f2f2f7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_review_content"
+            android:layout_width="290dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/background_search_view_white"
+            android:hint="리뷰를 작성해보세요"
+            android:textSize="14sp"
+            android:paddingStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/view_write"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view_write" />
+
+        <ImageButton
+            android:id="@+id/btn_img_attach"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/darker_gray"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/et_review_content"
+            app:layout_constraintEnd_toEndOf="@+id/et_review_content"
+            app:layout_constraintTop_toTopOf="@+id/et_review_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_create_review"
+            android:layout_width="60dp"
+            android:layout_height="33dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/button_review"
+            android:backgroundTint="@color/white"
+            android:text="글쓰기"
+            android:textColor="#b797e2"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/et_review_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_review_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
