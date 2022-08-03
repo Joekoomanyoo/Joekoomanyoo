@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@{groupListResponse.startDate}"
+                android:text="@{String.valueOf(groupListResponse.startDate)}"
                 tools:text="0000.00.00"
                 app:layout_constraintTop_toBottomOf="@id/tv_group_name"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="@{groupListResponse.endDate}"
+                android:text="@{String.valueOf(groupListResponse.endDate)}"
                 tools:text="0000.00.00"
                 app:layout_constraintStart_toEndOf="@id/header_from"
                 app:layout_constraintTop_toTopOf="@id/tv_start_date"

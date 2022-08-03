@@ -123,10 +123,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home),
 
     // 나의 모임 아이템 클릭시
     override fun onItemClick(position: Int) {
-        Log.d(TAG, groupListAdapter.currentList[position].toString())
 
         val action =
-            GroupListFragmentDirections.actionGroupListFragmentToGroupInfoFragment(groupListAdapter.currentList[position])
+            GroupListFragmentDirections.actionGroupListFragmentToGroupInfoFragment(groupListAdapter.getItem(position))
         findNavController().navigate(action)
     }
 }

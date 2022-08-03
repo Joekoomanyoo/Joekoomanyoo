@@ -6,6 +6,7 @@ import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,7 @@ import com.ssafy.heritage.R
 import com.ssafy.heritage.base.BaseActivity
 import com.ssafy.heritage.data.dto.User
 import com.ssafy.heritage.databinding.ActivityHomeBinding
+import com.ssafy.heritage.viewmodel.GroupViewModel
 import com.ssafy.heritage.viewmodel.HeritageViewModel
 import com.ssafy.heritage.viewmodel.UserViewModel
 import java.security.MessageDigest
