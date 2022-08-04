@@ -66,7 +66,7 @@ public class UserModifyController {
      * @param userInfo
      * @return success / fail
      */
-    @GetMapping("/check-password")
+    @PostMapping("/check-password")
     @ApiOperation(value="사용자 비밀번호 확인하기", response = String.class)
     public ResponseEntity<String> checkPassword(@ApiParam(value="사용자 비밀번호 확인 ( userPassword )") @RequestBody Map<String, String> userInfo){
         // 비밀번호가 맞으면

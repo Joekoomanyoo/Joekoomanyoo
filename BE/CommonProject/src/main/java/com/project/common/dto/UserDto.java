@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.project.common.entity.GroupEntity;
@@ -24,18 +25,15 @@ public class UserDto {
     private String socialLoginType;
     private String profileImgUrl;
     private String fcmToken;
-    private Date userRegistedAt;
-    private Date userUpdatedAt;
+    private LocalDateTime userRegistedAt;
+    private LocalDateTime userUpdatedAt;
     private char isDeleted;
+    private int evalCnt;
+    private int evalList1;
+    private int evalList2;
+    private int evalList3;
+    private int evalList4;
+    private int evalList5;
+    private LocalDateTime evalUpdatedAt;
 
-    
-    public UserEntity toEntity(){
-        return UserEntity.builder()
-                .userSeq(userSeq)
-                .userId(userId)
-                .userNickname(userNickname)
-                .userPassword(userPassword)
-                .userBirth(userBirth).build();
-
-    }
 }

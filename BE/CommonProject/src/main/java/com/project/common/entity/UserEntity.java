@@ -69,6 +69,15 @@ public class UserEntity implements UserDetails{
     @Column(length = 1, nullable = false)
     private char isDeleted;
 
+    private int evalCnt;
+    private int evalList1;
+    private int evalList2;
+    private int evalList3;
+    private int evalList4;
+    private int evalList5;
+    private LocalDateTime evalUpdatedAt;
+
+
     public void encodePassword(PasswordEncoder passwordEncoder) {
         this.userPassword = passwordEncoder.encode(this.userPassword);
     }

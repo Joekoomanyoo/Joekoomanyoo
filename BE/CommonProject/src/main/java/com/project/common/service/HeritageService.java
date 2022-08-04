@@ -76,13 +76,13 @@ public class HeritageService {
     }
     
     // 유저 scrap 삭제
-    public boolean deleteScrap(HeritageScrapDto heritageScrapDto) {
+    public boolean deleteScrap(int userSeq, int heritageSeq) {
         // 값이 없으면 false
-        if(heritageScrapRepositoryCustom.findByUserSeqAndHeritageSeq(heritageScrapDto.getUserSeq(), heritageScrapDto.getHeritageSeq()) == null){
+        if(heritageScrapRepositoryCustom.findByUserSeqAndHeritageSeq(userSeq, heritageSeq) == null){
             return false;
         }
         else{
-            return heritageScrapRepositoryCustom.deleteByUserSeqAndHeritageSeq(heritageScrapDto.getUserSeq(), heritageScrapDto.getHeritageSeq());
+            return heritageScrapRepositoryCustom.deleteByUserSeqAndHeritageSeq(userSeq, heritageSeq);
         }
     }
 }
