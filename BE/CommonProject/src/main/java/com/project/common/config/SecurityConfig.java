@@ -1,7 +1,5 @@
 package com.project.common.config;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,14 +11,18 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.project.common.config.Jwt.JwtAuthenticationFilter;
+import com.project.common.config.Jwt.JwtTokenProvider;
+
+import lombok.AllArgsConstructor;
+
 @Configuration
 // spring security 설정 클래스임을 알려준다
 @EnableWebSecurity
 // customUserDetailsService 생성자 주입을 위한 lombok
 @AllArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-    @Autowired
     private final JwtTokenProvider jwtTokenProvider;
 
 
@@ -53,5 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class);
         // JwtAuthenticationFilter를 UsernamePasswordAuthenticationFilter 전에 넣는다
     }
+
 
 }

@@ -1,7 +1,6 @@
 package com.project.common.service;
 
-import com.project.common.repository.UserLoginRepository;
-import com.project.common.repository.UserRepository;
+import com.project.common.repository.User.UserLoginRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
