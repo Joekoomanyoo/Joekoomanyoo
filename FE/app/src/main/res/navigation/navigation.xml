@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ssafy.heritage.view.HomeFragment"
+        android:label="fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_heritageListFragment"
+            app:destination="@id/heritageListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_feedListFragment"
+            app:destination="@id/feedListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_groupListFragment"
+            app:destination="@id/groupListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_heritageDetailFragment"
+            app:destination="@id/heritageDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_feedDetailFragment"
+            app:destination="@id/feedDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ARFragment"
+            app:destination="@id/ARFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notiFragment"
+            app:destination="@id/notiFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_groupInfoFragment"
+            app:destination="@id/groupInfoFragment" />
+    </fragment>
+
+    <!--group-->
+    <fragment
+        android:id="@+id/groupListFragment"
+        android:name="com.ssafy.heritage.view.group.GroupListFragment"
+        android:label="fragment_group_list">
+        <action
+            android:id="@+id/action_groupListFragment_to_groupInfoFragment"
+            app:destination="@id/groupInfoFragment" />
+        <action
+            android:id="@+id/action_groupListFragment_to_groupCreateFragment"
+            app:destination="@id/groupCreateFragment" />
+        <action
+            android:id="@+id/action_groupListFragment_to_myGroupListFragment"
+            app:destination="@id/myGroupListFragment" />
+        <action
+            android:id="@+id/action_groupListFragment_to_groupDetailFragment"
+            app:destination="@id/groupDetailFragment" />
+        <action
+            android:id="@+id/action_groupListFragment_to_evaluationListFragment"
+            app:destination="@id/evaluationListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupMapFragment"
+        android:name="com.ssafy.heritage.view.group.GroupMapFragment"
+        android:label="GroupMapFragment">
+        <action
+            android:id="@+id/action_groupMapFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupDetailFragment"
+        android:name="com.ssafy.heritage.view.group.GroupDetailFragment"
+        android:label="GroupDetailFragment">
+        <action
+            android:id="@+id/action_groupDetailFragment_to_groupListFragment"
+            app:destination="@id/groupListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupInfoFragment"
+        android:name="com.ssafy.heritage.view.group.GroupInfoFragment"
+        android:label="GroupInfoFragment">
+        <argument
+            android:name="groupInfo"
+            app:argType="com.ssafy.heritage.data.remote.response.GroupListResponse" />
+        <action
+            android:id="@+id/action_groupInfoFragment_to_groupDetailFragment"
+            app:destination="@id/groupDetailFragment" />
+        <action
+            android:id="@+id/action_groupInfoFragment_to_groupModifyFragment"
+            app:destination="@id/groupModifyFragment" />
+        <action
+            android:id="@+id/action_groupInfoFragment_to_heritageListFragment"
+            app:destination="@id/heritageListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupModifyFragment"
+        android:name="com.ssafy.heritage.view.group.GroupModifyFragment"
+        android:label="GroupModifyFragment">
+        <argument
+            android:name="groupInfo"
+            app:argType="com.ssafy.heritage.data.remote.response.GroupListResponse" />
+    </fragment>
+    <!--heritage-->
+    <fragment
+        android:id="@+id/heritageListFragment"
+        android:name="com.ssafy.heritage.view.heritage.HeritageListFragment"
+        android:label="fragment_heritage_list">
+        <action
+            android:id="@+id/action_heritageListFragment_to_heritageDetailFragment"
+            app:destination="@id/heritageDetailFragment" />
+        <action
+            android:id="@+id/action_heritageListFragment_to_heritageMapFragment"
+            app:destination="@id/heritageMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heritageDetailFragment"
+        android:name="com.ssafy.heritage.view.heritage.HeritageDetailFragment"
+        android:label="fragment_heritage_detail">
+        <argument
+            android:name="heritage"
+            app:argType="com.ssafy.heritage.data.dto.Heritage" />
+        <action
+            android:id="@+id/action_heritageDetailFragment_to_heritageInfoFragment"
+            app:destination="@id/heritageInfoFragment" />
+        <action
+            android:id="@+id/action_heritageDetailFragment_to_heritageReviewFragment"
+            app:destination="@id/heritageReviewFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="heritage/detail" />
+    </fragment>
+
+    <!--feed-->
+    <fragment
+        android:id="@+id/feedListFragment"
+        android:name="com.ssafy.heritage.view.feed.FeedListFragment"
+        android:label="fragment_feed_list">
+        <action
+            android:id="@+id/action_feedListFragment_to_feedDetailFragment"
+            app:destination="@id/feedDetailFragment" >
+            <argument
+                android:name="feed"
+                app:argType="com.ssafy.heritage.data.remote.response.FeedListResponse"/>
+        </action>
+        <action
+            android:id="@+id/action_feedListFragment_to_feedCreateFragment"
+            app:destination="@id/feedCreateFragment" />
+        <action
+            android:id="@+id/action_feedListFragment_to_feedDetailFragment2"
+            app:destination="@id/feedDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feedDetailFragment"
+        android:name="com.ssafy.heritage.view.feed.FeedDetailFragment"
+        android:label="fragment_feed_detail">
+        <action
+            android:id="@+id/action_feedDetailFragment_to_feedListFragment"
+            app:destination="@id/feedListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feedCreateFragment"
+        android:name="com.ssafy.heritage.view.feed.FeedCreateFragment"
+        android:label="FeedCreateFragment" >
+        <action
+            android:id="@+id/action_feedCreateFragment_to_feedListFragment"
+            app:destination="@id/feedListFragment" />
+    </fragment>
+
+    <!--profile-->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ssafy.heritage.view.profile.ProfileFragment"
+        android:label="fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_passwordRequestFragment"
+            app:destination="@id/passwordRequestFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_scrapListFragment"
+            app:destination="@id/scrapListFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myDataFragment"
+            app:destination="@id/myDataFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myCalendarFragment"
+            app:destination="@id/myCalendarFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_groupListFragment"
+            app:destination="@id/groupListFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_feedListFragment"
+            app:destination="@id/feedListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordRequestFragment"
+        android:name="com.ssafy.heritage.view.profile.PasswordRequestFragment"
+        android:label="PasswordRequestFragment">
+        <action
+            android:id="@+id/action_passwordRequestFragment_to_profileModifyFragment"
+            app:destination="@id/profileModifyFragment"
+            app:popUpTo="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileModifyFragment"
+        android:name="com.ssafy.heritage.view.profile.ProfileModifyFragment"
+        android:label="ProfileModifyFragment">
+        <action
+            android:id="@+id/action_profileModifyFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/heritageMapFragment"
+        android:name="com.ssafy.heritage.view.heritage.HeritageMapFragment"
+        android:label="HeritageMapFragment">
+        <action
+            android:id="@+id/action_heritageMapFragment_to_heritageDetailFragment"
+            app:destination="@id/heritageDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/notiFragment"
+        android:name="com.ssafy.heritage.view.NotiFragment"
+        android:label="NotiFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.ssafy.heritage.view.setting.SettingFragment"
+        android:label="SettingFragment">
+        <action
+            android:id="@+id/action_settingFragment_to_notiSettingFragment"
+            app:destination="@id/notiSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/heritageInfoFragment"
+        android:name="com.ssafy.heritage.view.heritage.HeritageInfoFragment"
+        android:label="HeritageInfoFragment">
+
+    </fragment>
+    <fragment
+        android:id="@+id/heritageReviewFragment"
+        android:name="com.ssafy.heritage.view.heritage.HeritageReviewFragment"
+        android:label="HeritageReviewFragment" />
+    <fragment
+        android:id="@+id/scrapListFragment"
+        android:name="com.ssafy.heritage.view.profile.ScrapListFragment"
+        android:label="ScrapListFragment" />
+    <fragment
+        android:id="@+id/notiSettingFragment"
+        android:name="com.ssafy.heritage.view.setting.NotiSettingFragment"
+        android:label="NotiSettingFragment" />
+    <fragment
+        android:id="@+id/myDataFragment"
+        android:name="com.ssafy.heritage.view.profile.MyDataFragment"
+        android:label="MyDataFragment" />
+    <fragment
+        android:id="@+id/myCalendarFragment"
+        android:name="com.ssafy.heritage.view.profile.MyCalendarFragment"
+        android:label="MyCalendarFragment" />
+
+    <fragment
+        android:id="@+id/myGroupListFragment"
+        android:name="com.ssafy.heritage.view.group.MyGroupListFragment"
+        android:label="MyGroupListFragment" >
+        <action
+            android:id="@+id/action_myGroupListFragment_to_groupInfoFragment"
+            app:destination="@id/groupInfoFragment" />
+
+    </fragment>
+
+    <!-- ar -->
+    <fragment
+        android:id="@+id/ARFragment"
+        android:name="com.ssafy.heritage.view.ar.ARFragment"
+        android:label="ARFragment">
+        <action
+            android:id="@+id/action_ARFragment_to_ARInfoFragment"
+            app:destination="@id/ARInfoFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_ARFragment_to_ARFoundFragment"-->
+<!--            app:destination="@id/ARFoundFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_ARFragment_to_ARListFragment"-->
+<!--            app:destination="@id/ARListFragment" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/ARInfoFragment"
+        android:name="com.ssafy.heritage.view.ar.ARInfoFragment"
+        android:label="ARFragment">
+        <action
+            android:id="@+id/action_ARInfoFragment_to_ARInfoFragment"
+            app:destination="@id/ARFoundFragment" />
+        <action
+            android:id="@+id/action_ARInfoFragment_to_ARFoundFragment"
+            app:destination="@id/ARFoundFragment" />
+        <action
+            android:id="@+id/action_ARInfoFragment_to_ARListFragment"
+            app:destination="@id/ARListFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/ARFoundFragment"
+        android:name="com.ssafy.heritage.view.ar.ARFoundFragment"
+        android:label="ARFoundFragment" />
+    <fragment
+        android:id="@+id/ARListFragment"
+        android:name="com.ssafy.heritage.view.ar.ARListFragment"
+        android:label="ARListFragment" />
+
+
+    <fragment
+        android:id="@+id/groupCreateFragment"
+        android:name="com.ssafy.heritage.view.group.GroupCreateFragment"
+        android:label="GroupCreateFragment" >
+        <action
+            android:id="@+id/action_groupCreateFragment_to_groupInfoFragment"
+            app:destination="@id/groupInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/evaluationListFragment"
+        android:name="com.ssafy.heritage.view.group.EvaluationListFragment"
+        android:label="EvaluationListFragment">
+        <argument
+            android:name="evalInfo"
+            app:argType="com.ssafy.heritage.data.remote.response.MyGroupResponse"/>
+    </fragment>
+
+
+</navigation>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/frame"
+            android:layout_marginHorizontal="40dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="@id/gl_hori_85"
+            motion:layout_constraintEnd_toEndOf="@id/gl_verti_90"
+            motion:layout_constraintStart_toStartOf="@id/gl_verti_10"
+            motion:layout_constraintTop_toTopOf="@id/gl_hori_15" />
+
+        <Constraint
+            android:id="@+id/constraint_background"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/constraint_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/gl_hori_85"
+            motion:layout_constraintEnd_toEndOf="@id/gl_verti_90"
+            motion:layout_constraintStart_toStartOf="@id/gl_verti_10"
+            motion:layout_goneMarginStart="16dp" />
+
+        <Constraint
+            android:id="@+id/header"
+            android:alpha="0"
+            motion:layout_constraintBottom_toTopOf="@id/constraint_et"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        android:id="@+id/transition"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000"></Transition>
+</MotionScene>

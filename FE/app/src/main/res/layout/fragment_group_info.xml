@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="groupDetailInfo"
+            type="com.ssafy.heritage.data.remote.response.GroupListResponse" />
+
+        <variable
+            name="groupVM"
+            type="com.ssafy.heritage.viewmodel.GroupViewModel" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        app:layoutDescription="@xml/fragment_group_info_scene">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hori_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hori_35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_top"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/gl_hori_35"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/ic_baseline_arrow_back_24"
+                android:backgroundTint="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_group_img"
+                glide_group="@{String.valueOf(groupVM.detailInfo.groupImgUrl)}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:tintMode="src_atop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#80000000"
+                tools:src="@drawable/loop" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_setting"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/ic_baseline_settings_24"
+                android:backgroundTint="@color/white"
+                android:visibility="@{(groupVM.groupPermission == 2? View.VISIBLE :View.GONE)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_change_image"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_image_white"
+                android:text="사진변경"
+                android:visibility="@{((groupVM.groupPermission == 3) || (groupVM.groupPermission == 0)? View.GONE :View.VISIBLE)}"
+                app:layout_constraintEnd_toStartOf="@id/btn_setting"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_group_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/apple_sd_gothic_neo_b"
+                    android:text="@{groupDetailInfo.groupName}"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/constraint_group_attribute"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="베낭메고 떠나는 경주여행" />
+
+                <TextView
+                    android:id="@+id/tv_start_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/apple_sd_gothic_neo_l"
+                    android:text="@{String.valueOf(groupDetailInfo.groupStartDate) + `~` + String.valueOf(groupDetailInfo.groupEndDate)}"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_group_name"
+                    app:layout_constraintStart_toStartOf="@id/tv_group_name"
+                    tools:text="0000.00.00 ~ 0000.00.00" />
+
+                <LinearLayout
+                    android:id="@+id/constraint_group_attribute"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_region"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="@{`#`+groupDetailInfo.groupRegion}"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="경주" />
+
+                    <TextView
+                        android:id="@+id/tv_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="@{`#`+groupDetailInfo.groupAgeRange + `대`}"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="#연령제한없음" />
+
+                    <TextView
+                        android:id="@+id/tv_global"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="#글로벌모임"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="@{groupDetailInfo.groupWithGlobal == 'Y' ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/tv_kids"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:text="#아이동반"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:visibility="@{groupDetailInfo.groupWithChild == 'Y' ? View.VISIBLE : View.GONE }" />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_tab"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_home_content"
+            android:elevation="8dp"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_hori_30">
+
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
+                android:id="@+id/viewpagertab"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:background="@drawable/background_transparent"
+                android:clipToPadding="false"
+                android:fontFamily="@font/apple_sd_gothic_neo_l"
+                android:paddingHorizontal="20dp"
+                android:textSize="16sp"
+                android:visibility="@{((groupVM.groupPermission == 3) || (groupVM.groupPermission == 0)? View.GONE :View.VISIBLE)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:stl_customTabTextLayoutId="@layout/tab_text"
+                app:stl_customTabTextViewId="@id/tab_text"
+                app:stl_defaultTabTextHorizontalPadding="18dp"
+                app:stl_distributeEvenly="true"
+                app:stl_dividerColor="@color/float_transparent"
+                app:stl_dividerThickness="0dp"
+                app:stl_indicatorColor="@color/main_blue_color"
+                app:stl_indicatorCornerRadius="18dp"
+                app:stl_indicatorGravity="bottom"
+                app:stl_indicatorInterpolation="smart"
+                app:stl_indicatorThickness="2dp"
+                app:stl_indicatorWidth="48dp"
+                app:stl_underlineColor="@color/main_blue_color"
+                app:stl_underlineThickness="0dp" />
+
+            <com.ssafy.heritage.custom.NonSwipeViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewpagertab"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

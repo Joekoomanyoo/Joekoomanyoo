@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipToOutline="true"
+        android:paddingVertical="4dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview_group_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:layout_marginStart="24dp"
+            app:cardCornerRadius="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_group_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/feed_img_2"
+                app:layout_constraintDimensionRatio="1:1" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/cardview_group_img"
+            app:layout_constraintStart_toEndOf="@+id/cardview_group_img"
+            app:layout_constraintTop_toTopOf="@+id/cardview_group_img">
+
+            <TextView
+                android:id="@+id/tv_group_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:text=""
+                android:textColor="#717174"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="22.08.22  " />
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_group_end_date"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text=""-->
+            <!--                android:textColor="#717174"-->
+            <!--                android:textSize="12sp"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/tv_group_start_date"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                tools:text="22.08.28" />-->
+
+            <TextView
+                android:id="@+id/tv_group_name"
+                android:layout_width="166dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="13dp"
+                android:text=""
+                android:textColor="#48484a"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_group_start_date"
+                tools:text="고려 불화 보고 떠드실 분 환영" />
+
+            <ImageButton
+                android:id="@+id/imagebtn_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4.5dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_check_skyblue"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_group_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_group_name"
+                app:layout_constraintTop_toTopOf="@+id/tv_group_start_date" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

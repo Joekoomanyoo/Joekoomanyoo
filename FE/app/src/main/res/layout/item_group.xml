@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.ssafy.heritage.util.UtilsKt" />
+
+        <variable
+            name="groupListResponse"
+            type="com.ssafy.heritage.data.remote.response.GroupListResponse" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="8dp"
+        android:translationZ="1dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp">
+
+            <ImageView
+                android:id="@+id/iv_member_img"
+                glide_group="@{String.valueOf(groupListResponse.groupImgUrl)}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/image_radius"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_b"
+                android:gravity="center_vertical"
+                android:text="@{groupListResponse.groupName}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/iv_member_img"
+                app:layout_constraintTop_toTopOf="@id/iv_member_img"
+                tools:text="설명" />
+
+            <TextView
+                android:id="@+id/tv_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_m"
+                android:text="@{String.valueOf(groupListResponse.groupStartDate) + `~` + String.valueOf(groupListResponse.groupEndDate)}"
+                android:textColor="@color/gray"
+                app:layout_constraintStart_toStartOf="@id/tv_group_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_group_name"
+                tools:text="0000.00.00" />
+
+            <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_group_name">
+
+                <LinearLayout
+                    android:id="@+id/constraint_group_attribute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tv_region"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_shared"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="@{`#`+groupListResponse.groupRegion}"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        tools:text="경주" />
+
+                    <TextView
+                        android:id="@+id/tv_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_shared"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="@{`#`+groupListResponse.groupAgeRange + `대`}"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        tools:text="#연령제한없음" />
+
+                    <TextView
+                        android:id="@+id/tv_global"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_shared"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="#글로벌모임"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:visibility="@{groupListResponse.groupWithGlobal == 'Y' ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/tv_kids"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_shared"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="#아이동반"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:visibility="@{groupListResponse.groupWithChild == 'Y' ? View.VISIBLE : View.GONE }" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_kids_check"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginVertical="5dp"-->
+            <!--                android:text="아이"-->
+            <!--                tools:text="아이동반"-->
+            <!--                android:textStyle="bold"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/tv_start_date"-->
+            <!--                app:layout_constraintStart_toStartOf="@id/tv_start_date"/>-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_global_check"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginVertical="5dp"-->
+            <!--                android:layout_marginHorizontal="10dp"-->
+            <!--                android:text="글로벌"-->
+            <!--                tools:text="외국인여부"-->
+            <!--                android:textStyle="bold"-->
+            <!--                app:layout_constraintTop_toTopOf="@id/tv_kids_check"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@id/tv_kids_check"-->
+            <!--                app:layout_constraintStart_toEndOf="@id/tv_kids_check"/>-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_age_check"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginVertical="5dp"-->
+            <!--                android:layout_marginHorizontal="10dp"-->
+            <!--                android:text="@{String.valueOf(groupListResponse.groupAgeRange)}"-->
+            <!--                tools:text="나이대"-->
+            <!--                android:textStyle="bold"-->
+            <!--                app:layout_constraintTop_toTopOf="@id/tv_global_check"-->
+            <!--                app:layout_constraintBottom_toBottomOf="@id/tv_global_check"-->
+            <!--                app:layout_constraintStart_toEndOf="@id/tv_global_check"/>-->
+            <ImageView
+                android:id="@+id/iv_lock_on"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_lock_on"
+                android:visibility="@{groupListResponse.groupAccessType == 'Y' ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

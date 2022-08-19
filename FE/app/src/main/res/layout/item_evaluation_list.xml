@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="profile"
+            type="com.ssafy.heritage.data.remote.response.EvaluationProfileResponse" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="73.5dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_heritage_review_user_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            glide="@{String.valueOf(profile.profileImgUrl)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            tools:text="돈컴아웃"
+            android:text="@{profile.userNickname}"
+            app:layout_constraintStart_toEndOf="@id/iv_heritage_review_user_img"
+            app:layout_constraintTop_toTopOf="@id/iv_heritage_review_user_img"
+            app:layout_constraintBottom_toBottomOf="@id/iv_heritage_review_user_img"/>
+
+        <ImageView
+            android:id="@+id/iv_check"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/check"
+            app:layout_constraintTop_toTopOf="@id/iv_heritage_review_user_img"
+            app:layout_constraintBottom_toBottomOf="@id/iv_heritage_review_user_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="invisible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

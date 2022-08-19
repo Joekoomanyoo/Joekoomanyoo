@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="heritage"
+            type="com.ssafy.heritage.data.dto.Heritage" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_heritage_detail_scene">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_map"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/gl_hori_80_map"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:id="@+id/map"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hori_80_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_hori_80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.80"
+            tools:layout_constraintGuide_percent="0.0" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_content1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_home_content"
+            android:elevation="24dp"
+            android:translationZ="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_hori_80"
+            tools:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_up"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_heritage_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@{heritage.heritageName}"
+                android:textColor="#CC000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_up"
+                tools:text="안동 봉정사 극락전" />
+
+            <TextView
+                android:id="@+id/tv_heritage_classification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{heritage.heritageClass}"
+                app:layout_constraintBottom_toBottomOf="@id/tv_heritage_name"
+                app:layout_constraintStart_toEndOf="@id/tv_heritage_name"
+                tools:text="국보" />
+
+            <TextView
+                android:id="@+id/tv_heritage_address_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@{heritage.heritageAddress}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_heritage_name"
+                tools:text="경북 안동시 서후면 봉정사기 222, 봉정사 (태장리)" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.scalified.fab.FloatingActionButton
+            android:id="@+id/btn_my_location"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            app:button_color="@color/link_water"
+            app:button_colorPressed="@color/cornflower"
+            app:hide_animation="@anim/fab_roll_to_down"
+            app:image="@drawable/ic_my_location"
+            app:image_size="20dp"
+            app:layout_constraintBottom_toTopOf="@id/constraint_scroll"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:show_animation="@anim/fab_roll_from_down" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_scroll"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_home_content"
+            android:elevation="20dp"
+            android:translationZ="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_hori_80"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_down"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scrollview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_down">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_content2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/tv_heritage_name_scroll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/apple_sd_gothic_neo_b"
+                            android:text="@{heritage.heritageName}"
+                            android:textColor="#CC000000"
+                            android:textSize="24sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_max="365dp"
+                            tools:text="안동 봉정사 극락전" />
+
+                        <TextView
+                            android:id="@+id/tv_heritage_classification_scroll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/apple_sd_gothic_neo_m"
+                            android:text="@{heritage.heritageClass}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_heritage_name_scroll"
+                            tools:text="국보" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_scrap"
+                            android:layout_width="19dp"
+                            android:layout_height="24dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/bookmark_change"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_heritage_name_scroll"
+                            app:layout_constraintEnd_toStartOf="@id/btn_link"
+                            app:layout_constraintTop_toTopOf="@id/tv_heritage_name_scroll" />
+
+                        <TextView
+                            android:id="@+id/tv_scrap"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/apple_sd_gothic_neo_l"
+                            android:text="스크랩"
+                            android:textColor="#88bbde"
+                            android:textSize="10dp"
+                            app:layout_constraintEnd_toEndOf="@+id/btn_scrap"
+                            app:layout_constraintStart_toStartOf="@+id/btn_scrap"
+                            app:layout_constraintTop_toBottomOf="@id/btn_scrap" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/btn_link"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="24dp"
+                            android:background="@android:color/transparent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_share"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_heritage_name_scroll"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tv_heritage_name_scroll" />
+
+                        <TextView
+                            android:id="@+id/tv_link"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/apple_sd_gothic_neo_l"
+                            android:text="공유"
+                            android:textColor="#88bbde"
+                            android:textSize="10dp"
+                            app:layout_constraintEnd_toEndOf="@+id/btn_link"
+                            app:layout_constraintStart_toStartOf="@+id/btn_link"
+                            app:layout_constraintTop_toBottomOf="@id/btn_link" />
+
+                        <ImageView
+                            android:id="@+id/iv_heritage"
+                            glide="@{String.valueOf(heritage.heritageImgUrl)}"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginHorizontal="80dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/image_radius"
+                            android:clipToOutline="true"
+                            android:scaleType="centerCrop"
+                            android:transitionName="heritage"
+                            app:layout_constraintDimensionRatio="1.5:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_heritage_classification_scroll"
+                            tools:src="@drawable/bong" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_verti_20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.2" />
+
+                    <TextView
+                        android:id="@+id/tv_heritage_categorization_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:text="분류"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/constraint_content2" />
+
+                    <TextView
+                        android:id="@+id/tv_heritage_categorization_content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/apple_sd_gothic_neo_m"
+                        android:text="@{heritage.heritageCategory}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/gl_verti_20"
+                        app:layout_constraintTop_toTopOf="@id/tv_heritage_categorization_title"
+                        tools:text="TextView" />
+
+                    <View
+                        android:id="@+id/divider1"
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@color/gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/gl_verti_20"
+                        app:layout_constraintTop_toBottomOf="@id/tv_heritage_categorization_title" />
+
+                    <TextView
+                        android:id="@+id/tv_heritage_address_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:text="소재지"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+
+                    <TextView
+                        android:id="@+id/tv_heritage_address_content_scroll"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/apple_sd_gothic_neo_m"
+                        android:text="@{heritage.heritageAddress}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/gl_verti_20"
+                        app:layout_constraintTop_toTopOf="@id/tv_heritage_address_title"
+                        tools:text="경북 안동시 서후면 봉정사기 222, 봉정사 (태장리)" />
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@color/gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/gl_verti_20"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_heritage_address_content_scroll" />
+
+                    <TextView
+                        android:id="@+id/tv_heritage_age_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:text="시대"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+                    <TextView
+                        android:id="@+id/tv_heritage_age_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/apple_sd_gothic_neo_m"
+                        android:text="@{heritage.heritageEra}"
+                        app:layout_constraintStart_toStartOf="@id/gl_verti_20"
+                        app:layout_constraintTop_toTopOf="@+id/tv_heritage_age_title"
+                        tools:text="TextView" />
+
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@color/gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/gl_verti_20"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_heritage_age_title" />
+
+                    <View
+                        android:id="@+id/divider5"
+                        android:layout_width="0dp"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/athens_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+                    <TextView
+                        android:id="@+id/tv_heritage_description_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:text="설명"
+                        android:textSize="24sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+                    <!--                    <androidx.appcompat.widget.AppCompatImageView-->
+                    <!--                        android:id="@+id/imagebtn_heritage_detail_voice_pause"-->
+                    <!--                        android:layout_width="20dp"-->
+                    <!--                        android:layout_height="20dp"-->
+                    <!--                        android:layout_marginEnd="24dp"-->
+                    <!--                        android:src="@drawable/ic_pause"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="@+id/tv_heritage_description_title"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintTop_toTopOf="@+id/tv_heritage_description_title" />-->
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imagebtn_heritage_detail_voice_play"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="26dp"
+                        android:src="@drawable/ic_audio"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_heritage_description_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_heritage_description_title" />
+
+
+                    <kr.co.prnd.readmore.ReadMoreTextView
+                        android:id="@+id/tv_heritage_description_content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@{heritage.heritageMemo}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_heritage_description_title"
+                        app:readMoreColor="@color/colorPrimary"
+                        app:readMoreMaxLine="3"
+                        app:readMoreText="…더보기"
+                        tools:text="봉정사(鳳停寺)는 672년(신라 문무왕 12) 능인대사(能仁大師)asdfasdfasdfasdfsad" />
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/tv_heritage_description_content"-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginHorizontal="24dp"-->
+                    <!--                        android:layout_marginTop="8dp"-->
+                    <!--                        android:fontFamily="@font/apple_sd_gothic_neo_m"-->
+                    <!--                        android:text="@{heritage.heritageMemo}"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@+id/tv_heritage_description_title"-->
+                    <!--                        tools:text="봉정사(鳳停寺)는 672년(신라 문무왕 12) 능인대사(能仁大師)asdfasdfasdfasdfsad" />-->
+
+                    <View
+                        android:id="@+id/divider6"
+                        android:layout_width="0dp"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/athens_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_heritage_description_content" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/header_review"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:text="리뷰"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider6" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_review_show"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@drawable/arrow_change"
+                        app:layout_constraintBottom_toBottomOf="@id/header_review"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/header_review" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_review_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/header_review"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_review"
+                        tools:visibility="visible" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_review"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="20dp"
+                        android:background="#f2f2f7"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/recyclerview_review_list">
+
+                        <EditText
+                            android:id="@+id/et_review_content"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="24dp"
+                            android:background="@drawable/background_search_view_white"
+                            android:fontFamily="@font/apple_sd_gothic_neo_m"
+                            android:hint="리뷰를 작성해보세요"
+                            android:paddingStart="10dp"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/btn_create_review"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/btn_img_attach"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_image"
+                            app:layout_constraintBottom_toBottomOf="@+id/et_review_content"
+                            app:layout_constraintEnd_toEndOf="@+id/et_review_content"
+                            app:layout_constraintTop_toTopOf="@+id/et_review_content" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_create_review"
+                            android:layout_width="60dp"
+                            android:layout_height="33dp"
+                            android:layout_marginEnd="24dp"
+                            android:background="@drawable/button_review"
+                            android:backgroundTint="@color/white"
+                            android:fontFamily="@font/apple_sd_gothic_neo_b"
+                            android:text="글쓰기"
+                            android:textColor="#b797e2"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/et_review_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/et_review_content" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

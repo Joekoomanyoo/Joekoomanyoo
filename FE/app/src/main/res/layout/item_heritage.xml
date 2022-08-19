@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="heritage"
+            type="com.ssafy.heritage.data.dto.Heritage" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_heritage_list_item"
+        android:elevation="4dp"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="8dp"
+        android:translationZ="2dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_verti_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="243dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_heritage"
+            glide="@{heritage.heritageImgUrl}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@id/gl_verti_30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:src="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_class"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:text="@{heritage.heritageClass}"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:textSize="12sp"
+            android:textColor="#8e8e93"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gl_verti_30"
+            tools:text="종목" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@{heritage.heritageName}"
+            android:fontFamily="@font/apple_sd_gothic_neo_b"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gl_verti_30"
+            app:layout_constraintTop_toBottomOf="@id/tv_class"
+            tools:text="이름" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@{heritage.heritageAddress}"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gl_verti_30"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="주소" />
+
+        <ImageButton
+            android:id="@+id/imagebtn_scrap"
+            android:layout_width="10.5dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/background_transparent"
+            android:src="@drawable/ic_bookmark"
+            app:layout_constraintStart_toStartOf="@id/gl_verti_30"
+            app:layout_constraintTop_toBottomOf="@id/tv_address"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/header_clip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="스크랩"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imagebtn_scrap"
+            app:layout_constraintStart_toEndOf="@+id/imagebtn_scrap" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_scrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{Integer.toString(heritage.heritageScrapCnt)}"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/header_clip"
+            app:layout_constraintStart_toEndOf="@id/header_clip"
+            tools:text="5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/header_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="리뷰"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_scrap"
+            app:layout_constraintStart_toEndOf="@+id/tv_scrap" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{Integer.toString(heritage.heritageReviewCnt)}"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/header_review"
+            app:layout_constraintStart_toEndOf="@id/header_review"
+            tools:text="2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

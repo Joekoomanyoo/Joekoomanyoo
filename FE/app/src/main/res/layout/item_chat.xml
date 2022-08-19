@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.ssafy.heritage.util.DateFormatter" />
+
+        <variable
+            name="chat"
+            type="com.ssafy.heritage.data.dto.Chat" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_other"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_other"
+                glide="@{chat.userImg}"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/tv_nickname_other"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:src="@drawable/ic_launcher_foreground" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_nickname_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{chat.sender}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="닉네임" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_time_other"
+                setTime="@{chat.createdTime}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:textColor="@color/gray"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@id/tv_content_other"
+                app:layout_constraintTop_toBottomOf="@id/tv_content_other"
+                app:layout_goneMarginEnd="4dp"
+                tools:text="시간" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_hori_75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_content_other"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_chat_content_other"
+                android:elevation="8dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp"
+                android:text="@{chat.chatContent}"
+                android:translationZ="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile_other"
+                app:layout_constraintEnd_toEndOf="@id/gl_hori_75"
+                app:layout_constraintStart_toEndOf="@id/iv_profile_other"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="메시지내용ㄴ마ㅣ럼ㄴ이ㅏ러ㅣㅏㅁㄴㅁ리ㅏㅗㄴ마ㅓㄹ호ㅓㅏㄴㅁㅇㅎ러ㅏㅗㅁㅈㅅ더롷ㅋ토ㅡㅜㄹㄴ;어ㅡ리ㅏ;넝맆;ㅏㅑ니애;ㅑ러ㅡ피ㅏ너뮤리ㅏㅓㄴ미ㅏ허ㅣㅁㅇ나;라" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_me"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_me"
+                glide="@{chat.userImg}"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/tv_nickname_me"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:src="@drawable/ic_launcher_foreground" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_nickname_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{chat.sender}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="닉네임" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_time_me"
+                setTime="@{chat.createdTime}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/gray"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="@id/tv_content_me"
+                app:layout_constraintTop_toBottomOf="@id/tv_content_me"
+                app:layout_goneMarginStart="4dp"
+                tools:text="시간" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_hori_25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_content_me"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_chat_content_me"
+                android:elevation="8dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="12dp"
+                android:text="@{chat.chatContent}"
+                android:textColor="@color/white"
+                android:translationZ="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile_me"
+                app:layout_constraintEnd_toStartOf="@id/iv_profile_me"
+                app:layout_constraintStart_toStartOf="@id/gl_hori_25"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="메시지내용ㄴ마ㅣ럼ㄴ이ㅏ러ㅣㅏㅁㄴㅁ리ㅏㅗㄴ마ㅓㄹ호ㅓㅏㄴㅁㅇㅎ러ㅏㅗㅁㅈㅅ더롷ㅋ토ㅡㅜㄹㄴ;어ㅡ리ㅏ;넝맆;ㅏㅑ니애;ㅑ러ㅡ피ㅏ너뮤리ㅏㅓㄴ미ㅏ허ㅣㅁㅇ나;라" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

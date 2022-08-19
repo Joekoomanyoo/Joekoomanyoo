@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="heritage"
+            type="com.ssafy.heritage.data.dto.Heritage" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.heritage.HeritageInfoFragment">
+
+            <TextView
+                android:id="@+id/tv_heritage_classification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@{heritage.heritageClass}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="국보" />
+
+            <TextView
+                android:id="@+id/tv_heritage_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="3dp"
+                android:text="@{heritage.heritageName}"
+                android:textColor="#CC000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_classification"
+                app:layout_constraintWidth_max="365dp"
+                tools:text="안동 봉정사 극락전" />
+
+            <View
+                android:layout_width="365dp"
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="3.5dp"
+                android:background="@color/gray"
+                app:layout_constraintBottom_toTopOf="@+id/tv_heritage_categorization_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_heritage_categorization_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="분류"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_name" />
+
+            <TextView
+                android:id="@+id/tv_heritage_categorization_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="24dp"
+                android:text="@{heritage.heritageCategory}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_name"
+                tools:text="TextView" />
+
+            <View
+                android:layout_width="365dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="3.5dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_categorization_content" />
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_heritage_quantity_title"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="24dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:text="수량/면적"-->
+            <!--            android:textStyle="bold"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_categorization_content" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_heritage_quantity_content"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="130dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:text="@{heritage.heritage}"-->
+            <!--            tools:text="TextView"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_categorization_content" />-->
+
+            <!--        <View-->
+            <!--            android:layout_width="365dp"-->
+            <!--            android:layout_height="0.5dp"-->
+            <!--            android:layout_marginTop="3.5dp"-->
+            <!--            android:background="@color/gray"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_quantity_content" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_heritage_designated_date_title"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="24dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:text="지정(등록)일"-->
+            <!--            android:textStyle="bold"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_categorization_content" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_heritage_designated_date_content"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="130dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:text="@{heritage.heritageCategory}"-->
+            <!--            tools:text="TextView"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_categorization_content" />-->
+
+            <!--        <View-->
+            <!--            android:layout_width="365dp"-->
+            <!--            android:layout_height="0.5dp"-->
+            <!--            android:layout_marginTop="3.5dp"-->
+            <!--            android:background="@color/gray"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_designated_date_content" />-->
+
+            <TextView
+                android:id="@+id/tv_heritage_address_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="소재지"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_categorization_content" />
+
+            <TextView
+                android:id="@+id/tv_heritage_address_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="8dp"
+                android:text="@{heritage.heritageAddress}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_categorization_content"
+                app:layout_constraintWidth_max="257dp"
+                tools:text="경북 안동시 서후면 봉정사기 222, 봉정사 (태장리)" />
+
+            <View
+                android:layout_width="365dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="3.5dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_address_content" />
+
+            <TextView
+                android:id="@+id/tv_heritage_age_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="시대"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_address_content" />
+
+            <TextView
+                android:id="@+id/tv_heritage_age_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="8dp"
+                android:text="@{heritage.heritageEra}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_address_content"
+                tools:text="TextView" />
+
+            <View
+                android:layout_width="365dp"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="3.5dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_age_content" />
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_heritage_owner_title"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="24dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:text="소유자(소유단체)"-->
+            <!--            android:textStyle="bold"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_age_content" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_heritage_owner_content"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="130dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:text="@{heritage.heritageTime}"-->
+            <!--            tools:text="TextView"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_age_content" />-->
+
+            <!--        <View-->
+            <!--            android:layout_width="365dp"-->
+            <!--            android:layout_height="0.5dp"-->
+            <!--            android:layout_marginTop="3.5dp"-->
+            <!--            android:background="@color/gray"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_owner_content" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_heritage_administrator_title"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="24dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            android:text="관리자(관리단체)"-->
+            <!--            android:textStyle="bold"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_owner_content" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_heritage_administrator_content"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="130dp"-->
+            <!--            android:layout_marginTop="8dp"-->
+            <!--            tools:text="TextView"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_heritage_owner_content" />-->
+
+            <TextView
+                android:id="@+id/tv_heritage_description_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="설명"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_age_content" />
+
+            <ImageButton
+                android:id="@+id/imagebtn_heritage_detail_voice_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_heritage_description_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_heritage_description_title" />
+
+            <ImageButton
+                android:id="@+id/imagebtn_heritage_detail_voice_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_heritage_description_title"
+                app:layout_constraintEnd_toStartOf="@+id/imagebtn_heritage_detail_voice_pause"
+                app:layout_constraintTop_toTopOf="@+id/tv_heritage_description_title" />
+
+            <TextView
+                android:id="@+id/tv_heritage_description_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@{heritage.heritageMemo}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_description_title"
+                app:layout_constraintWidth_max="365dp"
+                tools:text="봉정사(鳳停寺)는 672년(신라 문무왕 12) 능인대사(能仁大師)에 의하여 창건되었다는 전설이 전하는데,&lt;극락전 중수상량문&gt;등 발견된 구체적인 자료를 통해 보면 7세기 후반 능인대사에 의해 창건된 것으로 추정된다." />
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/imagebtn_heritage_detail_homepage"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_description_content" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_heritage_detail_homepage"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:text="http://www.bongjeongsa.org/"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imagebtn_heritage_detail_homepage"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_description_content" />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/imagebtn_heritage_detail_telephone"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_detail_homepage" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_heritage_detail_telephone"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="054-853-4181"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imagebtn_heritage_detail_telephone"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_detail_homepage" />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/imagebtn_heritage_detail_time"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_detail_telephone" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_heritage_detail_time"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="매일 07:00 - 19:00 하절기"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imagebtn_heritage_detail_time"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_detail_telephone" />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/imagebtn_heritage_detail_price"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_detail_time" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_heritage_detail_price"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="성인 개인  2,000원"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imagebtn_heritage_detail_price"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_detail_time" />-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/imagebtn_heritage_detail_Facility"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_detail_price" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_heritage_detail_Facility"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="정보 없음"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imagebtn_heritage_detail_Facility"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_detail_price" />-->
+
+            <FrameLayout
+                android:id="@+id/map"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="70dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_heritage_description_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

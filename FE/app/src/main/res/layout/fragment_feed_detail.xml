@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="feed"
+            type="com.ssafy.heritage.data.remote.response.FeedListResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.feed.FeedDetailFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_top"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp">
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_baseline_arrow_back_24"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/header_feed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_gravity="center"
+                    android:text="사진 피드"
+                    android:fontFamily="@font/apple_sd_gothic_neo_b"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/btn_back"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile"
+            glide="@{String.valueOf(feed.userImgUrl)}"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/user_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile">
+
+            <TextView
+                android:id="@+id/tv_feed_user_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="@{feed.userNickname}"
+                android:fontFamily="@font/apple_sd_gothic_neo_b"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="바닐라라떼"/>
+
+            <TextView
+                android:id="@+id/tv_feed_user_tale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:text="님"
+                android:fontFamily="@font/apple_sd_gothic_neo_b"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_feed_user_id"
+                app:layout_constraintTop_toTopOf="@+id/tv_feed_user_id" />
+
+            <TextView
+                android:id="@+id/tv_feed_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{feed.createdTime}"
+                android:fontFamily="@font/apple_sd_gothic_neo_m"
+                android:textColor="#aeaeb2"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_feed_user_id"
+                app:layout_constraintTop_toBottomOf="@+id/tv_feed_user_id"
+                tools:text="2022-08-15" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--        <androidx.appcompat.widget.SwitchCompat-->
+        <!--            android:id="@+id/switch_feed_detail_lock"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginRight="15dp"-->
+        <!--            android:thumbTint="@color/white"-->
+        <!--            android:thumb="@drawable/switch_custom_selector"-->
+        <!--            app:track="@drawable/switch_custom_track"-->
+        <!--            android:checked="true"-->
+        <!--            android:textOff="공개"-->
+        <!--            android:textOn="비공개"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/user_info"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/imagebtn_feed_detail_delete"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/user_info" />-->
+
+        <ImageButton
+            android:id="@+id/imagebtn_feed_detail_delete"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="28dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_trash"
+            app:layout_constraintBottom_toBottomOf="@+id/user_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_info" />
+
+        <LinearLayout
+            android:id="@+id/layout_img_storke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:padding="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile">
+
+            <ImageView
+                android:id="@+id/iv_feed_image"
+                glide="@{String.valueOf(feed.feedImgUrl)}"
+                android:layout_width="362dp"
+                android:layout_height="362dp"
+                android:scaleType="centerCrop"
+                android:transitionName="feed" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_feed_heritage_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:text="@{feed.feedTitle}"
+            android:fontFamily="@font/apple_sd_gothic_neo_b"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_img_storke"
+            tools:text="바닐라라떼"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/imagebtn_feed_detail_like"
+            android:layout_width="26dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginRight="28dp"
+            android:background="@drawable/like_change"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_img_storke" />
+
+        <TextView
+            android:id="@+id/tv_feed_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text=""
+            android:fontFamily="@font/apple_sd_gothic_neo_l"
+            android:textAlignment="center"
+            android:textColor="#8e8e93"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@+id/imagebtn_feed_detail_like"
+            app:layout_constraintStart_toStartOf="@+id/imagebtn_feed_detail_like"
+            app:layout_constraintTop_toBottomOf="@+id/imagebtn_feed_detail_like"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/tv_feed_hashtag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="15dp"
+            android:text=""
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:textColor="#88bbde"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_feed_heritage_name"
+            tools:text="#경복궁 #광화문 #겨울 #한복" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="5dp"
+            android:text="@{feed.feedContent}"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_feed_hashtag"
+            app:layout_constraintWidth_max="365dp"
+            tools:text="숨참고 러브다이브 우우우우 라라라라라라라 우우우우 어서와서 러브다이브 우우우우 오펄펙트세크리파이스 예에 숨참고 러브다이브"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="profile"
+            type="com.ssafy.heritage.data.remote.response.EvaluationProfileResponse" />
+    </data>
+
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        app:umanoDragView="@id/slide_layout"
+        app:umanoPanelHeight="0dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/main_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="20dp">
+
+                    <ImageButton
+                        android:id="@+id/btn_back"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ic_baseline_arrow_back_24"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/header_create_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_m"
+                        android:text="상호 평가할 모임원"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btn_back"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_evaluation_member_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                tools:listitem="@layout/item_evaluation_list" />
+            <Button
+                android:id="@+id/btn_request"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/button_login"
+                android:text="평가 완료"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerview_evaluation_member_list" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/slide_layout"
+            android:layout_width="match_parent"
+            android:layout_height="520dp"
+            android:background="@drawable/background_login">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_heritage_review_user_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="49dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_b"
+                android:text=""
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/iv_heritage_review_user_img"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="돈컴아웃" />
+
+            <TextView
+                android:id="@+id/header_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="52dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_l"
+                android:text="에 대한 평가를 해주세요!"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/tv_nickname"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/frame_layout_eval_1"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_heritage_review_user_img">
+
+                <CheckBox
+                    android:id="@+id/btn_eval_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/checkbox_custom" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_eval_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_eval_1"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_promise"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_eval_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_l"
+                        android:text="시간 약속을 잘 지켜요."
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_eval_1"
+                        app:layout_constraintStart_toEndOf="@id/iv_eval_1"
+                        app:layout_constraintTop_toTopOf="@id/iv_eval_1" />
+
+                    <ImageView
+                        android:id="@+id/iv_check_eval_1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="21dp"
+                        android:background="@drawable/ic_checked"
+                        android:backgroundTint="@color/main_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="invisible"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/frame_layout_eval_2"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_layout_eval_1">
+
+                <CheckBox
+                    android:id="@+id/btn_eval_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/checkbox_custom" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_eval_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_eval_2"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_manner"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_eval_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_l"
+                        android:text="친절하고 매너가 좋아요."
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_eval_2"
+                        app:layout_constraintStart_toEndOf="@id/iv_eval_2"
+                        app:layout_constraintTop_toTopOf="@id/iv_eval_2" />
+
+                    <ImageView
+                        android:id="@+id/iv_check_eval_2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="21dp"
+                        android:background="@drawable/ic_checked"
+                        android:backgroundTint="@color/main_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="invisible"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/frame_layout_eval_3"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_layout_eval_2">
+
+                <CheckBox
+                    android:id="@+id/btn_eval_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/checkbox_custom" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_eval_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_eval_3"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_response"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_eval_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_l"
+                        android:text="응답이 빨라요."
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_eval_3"
+                        app:layout_constraintStart_toEndOf="@id/iv_eval_3"
+                        app:layout_constraintTop_toTopOf="@id/iv_eval_3" />
+
+                    <ImageView
+                        android:id="@+id/iv_check_eval_3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="21dp"
+                        android:background="@drawable/ic_checked"
+                        android:backgroundTint="@color/main_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="invisible"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_layout_eval_4"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_layout_eval_3">
+
+                <CheckBox
+                    android:id="@+id/btn_eval_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/checkbox_custom" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_eval_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_eval_4"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_knowledge"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_eval_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_l"
+                        android:text="문화유산에 대한 지식이 많아요."
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_eval_4"
+                        app:layout_constraintStart_toEndOf="@id/iv_eval_4"
+                        app:layout_constraintTop_toTopOf="@id/iv_eval_4" />
+
+                    <ImageView
+                        android:id="@+id/iv_check_eval_4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="21dp"
+                        android:background="@drawable/ic_checked"
+                        android:backgroundTint="@color/main_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="invisible"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_layout_eval_5"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="23dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_layout_eval_4">
+
+                <CheckBox
+                    android:id="@+id/btn_eval_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@android:color/transparent"
+                    android:background="@drawable/checkbox_custom" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_eval_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_eval_5"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_health"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_eval_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/apple_sd_gothic_neo_l"
+                        android:text="체력이 좋아요."
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_eval_5"
+                        app:layout_constraintStart_toEndOf="@id/iv_eval_5"
+                        app:layout_constraintTop_toTopOf="@id/iv_eval_5" />
+
+                    <ImageView
+                        android:id="@+id/iv_check_eval_5"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="21dp"
+                        android:background="@drawable/ic_checked"
+                        android:backgroundTint="@color/main_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="invisible"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btn_completion"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="44dp"
+                android:background="@drawable/button_login"
+                android:text="완료"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_layout_eval_5" />
+
+            <Button
+                android:id="@+id/btn_cancellation"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/button_login"
+                android:text="평가 안함"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/frame_layout_eval_5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+</layout>

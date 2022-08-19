@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.feed.FeedListAllFragment">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/background_search_view_white"
+            android:elevation="4dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_b"
+            android:translationZ="2dp"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryBackground="@null"
+            app:queryHint="검색어를 입력해주세요" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_feed_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_view"
+            app:spanCount="3"
+            tools:listitem="@layout/item_feed">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_create_feed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:elevation="20dp"
+            android:outlineAmbientShadowColor="@color/main_color"
+            android:outlineSpotShadowColor="@color/main_color"
+            android:shadowColor="@color/main_color"
+            android:tintMode="@color/white"
+            android:translationZ="10dp"
+            app:backgroundTint="@color/main_color"
+            app:borderWidth="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:maxImageSize="20dp"
+            app:rippleColor="@color/main_color"
+            app:srcCompat="@drawable/ic_add_feed" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

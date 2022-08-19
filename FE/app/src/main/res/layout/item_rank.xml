@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="rankInfo"
+            type="com.ssafy.heritage.data.remote.response.StampRankResponse" />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="50dp"
+        android:translationZ="1dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_lank_img"
+                glide="@{String.valueOf(rankInfo.profileImgUrl)}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:elevation="4dp"
+                android:foregroundGravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/monster"
+                android:translationZ="2dp"
+                app:civ_border_color="@color/white"
+                app:civ_border_overlay="true"
+                app:civ_border_width="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lank_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_lank_img"
+                app:layout_constraintStart_toEndOf="@id/iv_lank_img"
+                app:layout_constraintTop_toTopOf="@id/iv_lank_img">
+
+                <TextView
+                    android:id="@+id/tv_lank_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/apple_sd_gothic_neo_b"
+                    android:text="@{rankInfo.userNickname}"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="잠만보" />
+
+                <TextView
+                    android:id="@+id/tv_lank_count_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/apple_sd_gothic_neo_m"
+                    android:text="총"
+                    android:textColor="#8e8e93"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_lank_nickname" />
+
+                <TextView
+                    android:id="@+id/tv_lank_count_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/apple_sd_gothic_neo_m"
+                    android:text="@{String.valueOf(rankInfo.myStampCnt)}"
+                    android:textColor="#8e8e93"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_lank_count_all"
+                    app:layout_constraintStart_toEndOf="@id/tv_lank_count_all"
+                    app:layout_constraintTop_toTopOf="@id/tv_lank_count_all"
+                    tools:text="7" />
+
+                <TextView
+                    android:id="@+id/tv_lank_count_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/apple_sd_gothic_neo_m"
+                    android:text="개"
+                    android:textColor="#8e8e93"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_lank_count_all"
+                    app:layout_constraintStart_toEndOf="@id/tv_lank_count_number"
+                    app:layout_constraintTop_toTopOf="@id/tv_lank_count_all" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toTopOf="@id/lank_count"
+                app:layout_constraintBottom_toBottomOf="@id/lank_count"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_lank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/apple_sd_gothic_neo_b"
+                    android:text="@{String.valueOf(rankInfo.userRank)}"
+                    android:textColor="#aeaeb2"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@id/tv_lank_unit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="1" />
+
+                <TextView
+                    android:id="@+id/tv_lank_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/apple_sd_gothic_neo_m"
+                    android:text="위"
+                    android:textColor="#717174"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

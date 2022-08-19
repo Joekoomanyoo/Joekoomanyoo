@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="member"
+            type="com.ssafy.heritage.data.dto.Member" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:background="@drawable/background_dialog_other_profile"
+        android:minWidth="300dp"
+        android:padding="30dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_member_img"
+            glide="@{String.valueOf(member.memberImgUrl)}"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="30dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_cancel"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:text="닫기"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_user_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:text="@{member.memberNickname}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_user_gender"
+            app:layout_constraintStart_toEndOf="@id/iv_member_img"
+            app:layout_constraintTop_toTopOf="@id/iv_member_img"
+            tools:text="잠만보" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/tv_user_id"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="20dp"-->
+        <!--            android:text="@{member.userId}"-->
+        <!--            android:textColor="@color/gray"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:fontFamily="@font/apple_sd_gothic_neo_l"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/iv_member_img"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tv_user_nickname"-->
+        <!--            tools:text="\@ssafy" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/tv_user_age"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="20dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:text="#20살"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:fontFamily="@font/apple_sd_gothic_neo_l"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@id/iv_member_img"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/iv_member_img"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/tv_user_id"-->
+        <!--            tools:text="#20살"/>-->
+
+        <TextView
+            android:id="@+id/tv_user_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/apple_sd_gothic_neo_l"
+            android:text="@{`#` + member.memberGender == String.valueOf('F') ? `여성` : `남성`}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_member_img"
+            app:layout_constraintStart_toStartOf="@id/tv_user_nickname"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_nickname"
+            tools:text="#여성" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/header_my_stamp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:fontFamily="@font/apple_sd_gothic_neo_m"-->
+        <!--            android:text="나의 도감"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/iv_member_img" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/header_category"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="5dp"-->
+        <!--            android:fontFamily="@font/apple_sd_gothic_neo_l"-->
+        <!--            android:text="탑"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/header_my_stamp"-->
+        <!--            tools:text="탑" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/tv_category_count"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="20dp"-->
+        <!--            android:layout_marginTop="5dp"-->
+        <!--            android:fontFamily="@font/apple_sd_gothic_neo_l"-->
+        <!--            android:text="20"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/header_category"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/header_my_stamp"-->
+        <!--            tools:text="20" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/header_category_count"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="10dp"-->
+        <!--            android:layout_marginTop="5dp"-->
+        <!--            android:fontFamily="@font/apple_sd_gothic_neo_l"-->
+        <!--            android:text="회"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/tv_category_count"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/header_my_stamp"-->
+        <!--            tools:text="회" />-->
+
+        <TextView
+            android:id="@+id/header_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:text="받은 평가"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_gender" />
+
+
+        <TextView
+            android:id="@+id/header_review_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_l"
+            android:text="시간 약속을 잘 지켜요"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_review" />
+
+        <TextView
+            android:id="@+id/tv_review_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/apple_sd_gothic_neo_b"
+            android:text="@{String.valueOf(member.eval1)}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/header_review_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header_review_1" />
+
+        <TextView
+            android:id="@+id/header_review_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_l"
+            android:text="친절하고 매너가 좋아요."
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_review_1" />
+
+        <TextView
+            android:id="@+id/tv_review_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/apple_sd_gothic_neo_b"
+            android:text="@{String.valueOf(member.eval2)}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/header_review_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header_review_2" />
+
+        <TextView
+            android:id="@+id/header_review_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_l"
+            android:text="응답이 빨라요."
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_review_2" />
+
+        <TextView
+            android:id="@+id/tv_review_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/apple_sd_gothic_neo_b"
+            android:text="@{String.valueOf(member.eval3)}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/header_review_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header_review_3" />
+
+        <TextView
+            android:id="@+id/header_review_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_l"
+            android:text="문화유산에 대한 지식이 많아요."
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_review_3" />
+
+        <TextView
+            android:id="@+id/tv_review_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/apple_sd_gothic_neo_b"
+            android:text="@{String.valueOf(member.eval4)}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/header_review_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header_review_4" />
+
+        <TextView
+            android:id="@+id/header_review_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_l"
+            android:text="체력이 좋아요."
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_review_4" />
+
+        <TextView
+            android:id="@+id/tv_review_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/apple_sd_gothic_neo_b"
+            android:text="@{String.valueOf(member.eval5)}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/header_review_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header_review_5"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/header_my_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:text="각오"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_review_5" />
+
+        <TextView
+            android:id="@+id/tv_my_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/apple_sd_gothic_neo_l"
+            android:text="@{member.memberAppeal}"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_my_introduce"
+            tools:text="열심히하겠습니다!!" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_approve"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_login"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:text="수락"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_introduce" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_refuse"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_login"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:text="거절"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_introduce" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_drop"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_login"
+            android:text="강제퇴장"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_introduce" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.ssafy.heritage.util.UtilsKt" />
+
+        <variable
+            name="myGroupResponse"
+            type="com.ssafy.heritage.data.remote.response.MyGroupResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/background_gorup_my_list"
+        android:layout_marginBottom="16dp"
+        android:elevation="2dp"
+        android:translationZ="1dp"
+        app:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_member_img"
+                glide_group="@{String.valueOf(myGroupResponse.groupImgUrl)}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/image_radius"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_b"
+                android:gravity="center_vertical"
+                android:text="@{myGroupResponse.groupName}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/iv_member_img"
+                app:layout_constraintTop_toTopOf="@id/iv_member_img"
+                tools:text="설명" />
+
+            <TextView
+                android:id="@+id/tv_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/apple_sd_gothic_neo_m"
+                android:text="@{String.valueOf(myGroupResponse.groupStartDate) + `~` + String.valueOf(myGroupResponse.groupEndDate)}"
+                android:textColor="@color/gray"
+                app:layout_constraintStart_toStartOf="@id/tv_group_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_group_name"
+                tools:text="0000.00.00" />
+
+            <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:visibility="@{myGroupResponse.groupStatus == 'F' ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_group_name">
+
+                <LinearLayout
+                    android:id="@+id/constraint_group_attribute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tv_region"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_shared"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="@{`#`+myGroupResponse.groupRegion}"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        tools:text="경주" />
+
+                    <TextView
+                        android:id="@+id/tv_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_shared"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="@{`#`+myGroupResponse.groupAgeRange + `대`}"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        tools:text="#연령제한없음" />
+
+                    <TextView
+                        android:id="@+id/tv_global"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_shared"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="#글로벌모임"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:visibility="@{myGroupResponse.groupWithGlobal == 'Y' ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/tv_kids"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/button_shared"
+                        android:fontFamily="@font/apple_sd_gothic_neo_b"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:text="#아이동반"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:visibility="@{myGroupResponse.groupWithChild == 'Y' ? View.VISIBLE : View.GONE }" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <ImageView
+                android:id="@+id/iv_lock_on"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_lock_on"
+                android:visibility="@{myGroupResponse.groupAccessType == 'Y' ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_evaluate"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_login"
+                android:text="상호평가"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:visibility="@{(myGroupResponse.groupStatus == 'F' &amp;&amp; myGroupResponse.memberIsEvaluated == 'N' )? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@id/iv_member_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_member_img" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_gorup_my_list_completed"
+            android:clipToOutline="true"
+            android:visibility="@{myGroupResponse.groupStatus == 'F' ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
