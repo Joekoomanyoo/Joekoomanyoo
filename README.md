@@ -126,28 +126,44 @@
 
  ## 🏴 서비스 
 
- ## 서비스화면
-간단한 글과 움짤
-</br></br>
-
+</br>
+ 
+> **문화 유산** - 위치 기반 목록 조회, 카테고리, 리뷰, 검색 기능
+ 
 <div>
-  <img src="https://user-images.githubusercontent.com/66373647/186418969-96825ca7-25be-449e-bee1-e360bb392e58.gif" height="480px;" alt="">
-  <img src="https://user-images.githubusercontent.com/66373647/186419085-b95ec474-1dcb-4b14-99ba-a65007d15543.gif" height="480px;" alt="">
-  <img src="https://user-images.githubusercontent.com/66373647/186419365-9c77b5c7-18cd-4c03-926b-e0e0e0ca6104.gif" height="480px;" alt="">
-  <img src="https://user-images.githubusercontent.com/66373647/186419826-f30e6189-91d1-4de1-b2d0-ad8f001f919e.gif" height="480px;" alt="">
+  <img src="https://user-images.githubusercontent.com/66373647/186418969-96825ca7-25be-449e-bee1-e360bb392e58.gif" height="360px;" alt="">
+  <img src="https://user-images.githubusercontent.com/66373647/186419085-b95ec474-1dcb-4b14-99ba-a65007d15543.gif" height="360px;" alt="">
+  <img src="https://user-images.githubusercontent.com/66373647/186419365-9c77b5c7-18cd-4c03-926b-e0e0e0ca6104.gif" height="360px;" alt="">
+  <img src="https://user-images.githubusercontent.com/66373647/186419826-f30e6189-91d1-4de1-b2d0-ad8f001f919e.gif" height="360px;" alt="">
 </div>
-
+ 
+<br><br>
+ 
+ > **모임 기능** - 모임 카테고리별 검색, 모임 참가, 모임 목적지 등록
+ 
+ 
 <div>
-  <img src="https://user-images.githubusercontent.com/66373647/186419176-2f866652-61aa-401b-ad57-194128a1ce1b.gif" height="480px;" alt="">
-  <img src="https://user-images.githubusercontent.com/66373647/186419431-e6893d09-e6ef-4af3-82df-17c8e0cda515.gif" height="480px;" alt="">
+  <img src="https://user-images.githubusercontent.com/66373647/186419176-2f866652-61aa-401b-ad57-194128a1ce1b.gif" height="360px;" alt="">
+  <img src="https://user-images.githubusercontent.com/66373647/186419431-e6893d09-e6ef-4af3-82df-17c8e0cda515.gif" height="360px;" alt="">
 </div>
-  
-<div>
-  <img src="https://user-images.githubusercontent.com/66373647/186419212-b93f76d8-1509-4932-80c7-9d9f3afa4158.gif" height="480px;" alt="">
-  <img src="https://user-images.githubusercontent.com/66373647/186419248-f0f013b0-5da6-4ba0-96bc-95bbc3aa4d44.gif" height="480px;" alt="">
-</div>
+ 
+  <br><br>
+ 
+ > **사진 피드** - 해쉬태그 검색, 좋아요, 피드 조회
 
+ 
 <div>
-   <img src="https://user-images.githubusercontent.com/66373647/186428945-89fce42b-b23e-4bdd-aeb1-bd26a4ca94fc.gif" height="480px;" alt="">
-   <img src="https://user-images.githubusercontent.com/66373647/186429270-b222c4d2-eb58-48c0-8a9f-aefd92697348.gif" height="480px;" alt="">
+  <img src="https://user-images.githubusercontent.com/66373647/186419212-b93f76d8-1509-4932-80c7-9d9f3afa4158.gif" height="360px;" alt="">
+  <img src="https://user-images.githubusercontent.com/66373647/186419248-f0f013b0-5da6-4ba0-96bc-95bbc3aa4d44.gif" height="360px;" alt="">
+</div>
+ 
+   <br><br>
+ 
+ > **AR 기능** - AR 유물 스탬프 찾기, AR 도감, AR 스탬프 랭킹
+
+
+ 
+<div>
+   <img src="https://user-images.githubusercontent.com/66373647/186428945-89fce42b-b23e-4bdd-aeb1-bd26a4ca94fc.gif" height="360px;" alt="">
+   <img src="https://user-images.githubusercontent.com/66373647/186429270-b222c4d2-eb58-48c0-8a9f-aefd92697348.gif" height="360px;" alt="">
 </div>
