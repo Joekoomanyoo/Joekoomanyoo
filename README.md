@@ -1,10 +1,15 @@
 # <img src="https://user-images.githubusercontent.com/52437364/185876019-f544dd02-ab2e-4f10-af4e-43a5d970e4cd.png" align="left" width="40" height="40"> 좋구만유, 문화유산 동행 APP
+> **Cultural Heritage Companion Application, Joekoomanyoo**
+
+
+<img src="https://user-images.githubusercontent.com/97875998/186780671-2a5bd151-63e5-4678-88d5-de3ffdda1692.png" align="left" width="65%" height="65%">
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <br>
 
-<img src="https://user-images.githubusercontent.com/97875998/186780671-2a5bd151-63e5-4678-88d5-de3ffdda1692.png" align="left" height="20%" weight="20%">
 
-</br></br></br></br></br></br>
 
 > ## 주제
 **좋구만유**는 사용자의 실시간 위치를 기반으로 문화 유산 정보 및 동행 서비스를 제공하는 프로젝트 입니다.
