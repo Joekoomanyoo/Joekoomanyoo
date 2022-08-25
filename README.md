@@ -98,12 +98,16 @@
 
 </br></br>
 
-> ## 🔨 아키텍처
-
-<img src="https://user-images.githubusercontent.com/52437364/186411816-4e96bbe4-952b-40d9-a7e2-b90caadec223.png" align="left">
-<br><br>
-
-> ## ERD
+## 🏴 아키텍처
+     
+     
+![image](https://user-images.githubusercontent.com/97875998/186785125-1f25c7c8-6e3b-434e-871f-68b18d47cd7c.png)
+     
+<br>     
+     
+## 🏴 ERD
+     
+<br>
 
 <img src="https://user-images.githubusercontent.com/97875998/186412162-df1c7e85-c347-4726-bded-a8fbf2ab1bce.png" align="left"><br><br>
 
