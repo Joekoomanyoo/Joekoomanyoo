@@ -68,40 +68,41 @@
 
 ## 🏴 개발 환경
 
-    # BackEnd
-    
-    Spring Boot 2.6.3
-    Spring Data JPA
-    Spring Security
-    Spring Validation
-    Java 11
-    QueryDSL 5.0
-    Lombok 1.18.24
-    Firebase 8.x
-    Gradle 7.4.x
-    Swagger 3.x
-    MySQL 8.0.29
-    
-    #Android
-    
-    Kotlin 1.7.0
-    Room 2.4.2
-    Retrofit 2.9.0
-    Glide 4.13.2
-    
-    
-    #Infra
-    
-    AWS EC2
-    Docker
-    Jenkins
-    
-    #IDE
-    
-    IntelliJ
-    Spring Tool Suite 4
-    MySQL Workbench 8.0
-    Android Studio
+- BackEnd
+
+   - Spring Boot 2.6.3
+   - Spring Data JPA
+   - Spring Security
+   - Spring Validation
+   - Java 11
+   - QueryDSL 5.0
+   - Lombok 1.18.24
+   - Firebase 8.x
+   - Gradle 7.4.x
+   - Swagger 3.x
+
+- Android
+
+   - Kotlin 1.7.0
+   - Room 2.4.2
+   - Retrofit 2.9.0
+   - Glide 4.13.2
+
+- DB
+
+   - MySQL 8.0.29 
+
+- CI/CD
+
+   - AWS EC2
+   - Docker
+   - Jenkins
+
+- IDE
+   - IntelliJ
+   - Spring Tool Suite 3
+   - MySQL Workbench 8.0
+   - Android Studio
 
 <br>
 
