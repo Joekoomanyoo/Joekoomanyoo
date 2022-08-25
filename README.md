@@ -13,6 +13,38 @@
 
 <br>
 
+
+## 🧛 **팀원**
+<table>
+ <tr>
+    <td align="center"><a href="https://github.com/dttmm"><img src="https://avatars.githubusercontent.com/dttmm" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/mxxxxxji"><img src="https://avatars.githubusercontent.com/mxxxxxji" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/kettle4ot"><img src="https://avatars.githubusercontent.com/kettle4ot" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/us13579"><img src="https://avatars.githubusercontent.com/us13579" width="80px;" alt=""></td>
+    <td align="center"><a href="https://github.com/Jaehwany"><img src="https://avatars.githubusercontent.com/Jaehwany" width="80px;" alt=""></td>
+  </tr>
+  <tr>
+    <td align="center">팀장, AOS</td>
+    <td align="center">AOS</td>
+    <td align="center">AOS, UI 설계</td>
+    <td align="center">Backend</td>
+    <td align="center">Backend, Infra</td>
+  </tr>
+     <tr>
+    <td align="center"><a href="https://github.com/mxxxxxji"><sub><b>김명지</b></td>
+    <td align="center"><a href="https://github.com/dttmm"><sub><b>강태웅</b></td>
+    <td align="center"><a href="https://github.com/kettle4ot"><sub>김수</b></td>
+    <td align="center"><a href="https://github.com/us13579"><sub><b>김지수</b></td>
+    <td align="center"><a href="https://github.com/Jaehwany"><sub><b>이재환</b></td>
+  </tr>
+     
+</table>
+     
+<br>     
+     
+
+
+
 ## 🏴 **Introduce**
 
 **좋구만유**는 사용자의 실시간 위치를 기반으로 문화 유산 정보 및 동행 서비스를 제공하는 프로젝트 입니다.
