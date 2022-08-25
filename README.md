@@ -6,6 +6,12 @@
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
+## 🏴 **Introduce**
+
+**좋구만유**는 사용자의 실시간 위치를 기반으로 문화 유산 정보 및 동행 서비스를 제공하는 프로젝트 입니다.
+
+<br>
+
 
 ## 🕘 **프로젝트 진행 기간**
 
@@ -42,18 +48,41 @@
      
 <br>     
      
+## 🏴 **협업 환경**
 
 
-
-## 🏴 **Introduce**
-
-**좋구만유**는 사용자의 실시간 위치를 기반으로 문화 유산 정보 및 동행 서비스를 제공하는 프로젝트 입니다.
 
 <br>
 
+
+
+
+## 🏴 UCC
+
+<br>
+
+## 🏴 PPT
+
+<br>
+
+## 🏴 ERD
+
+<br>
+
+## 🏴 개발 환경
+
+<br>
+
+
+## 🏴 아키텍처
+     
+     
+![image](https://user-images.githubusercontent.com/97875998/186785125-1f25c7c8-6e3b-434e-871f-68b18d47cd7c.png)
+     
+<br>     
+
  ## 🏴 주요 기능
- <br>
- 
+
 - **문화 유산**
 
    - 문화 유산에 대한 상세 정보를 볼 수 있습니다
@@ -66,7 +95,6 @@
 
    - 문화 유산에 대한 리뷰를 작성할 수 있습니다
 
-<br>
 
 - **모임**
 
@@ -78,7 +106,6 @@
 
    - 모임 후 모임원 간 상호 평가를 통해 모임원을 칭찬할 수 있습니다
 
-<br>
 
 - **사진 피드**
 
@@ -86,7 +113,6 @@
 
    - 좋아요 기능을 통해 사진에 대한 호감을 표할 수 있습니다
 
-<br>
 
 - **AR 방문 인증**
 
@@ -98,128 +124,9 @@
 
 </br></br>
 
-## 🏴 아키텍처
-     
-     
-![image](https://user-images.githubusercontent.com/97875998/186785125-1f25c7c8-6e3b-434e-871f-68b18d47cd7c.png)
-     
-<br>     
-     
-## 🏴 ERD
-     
-<br>
+ ## 🏴 서비스 
 
-<img src="https://user-images.githubusercontent.com/97875998/186412162-df1c7e85-c347-4726-bded-a8fbf2ab1bce.png" align="left"><br><br>
-
-<br><br><br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-> ## 개발 환경
-
-- BackEnd
-
-   - Spring Boot 2.6.3
-   - Spring Data JPA
-   - Spring Security
-   - Spring Validation
-   - Java 11
-   - QueryDSL 5.0
-   - Lombok 1.18.24
-   - Firebase 8.x
-   - Gradle 7.4.x
-   - Swagger 3.x
-
-- Android
-
-   - Kotlin 1.7.0
-   - Room 2.4.2
-   - Retrofit 2.9.0
-   - Glide 4.13.2
-
-- DB
-
-   - MySQL 8.0.29 
-
-- CI/CD
-
-   - AWS EC2
-   - Docker
-   - Jenkins
-
-- IDE
-   - IntelliJ
-   - Spring Tool Suite 3
-   - MySQL Workbench 8.0
-   - Android Studio
-
-<br>
-
-> ## 협업 환경
-
-- GitLab
-
-  - 코드의 버전을 관리
-  - 이슈 생성, 관리, 해결을 위한 소통
-  - branch를 통한 세부 기능 구현 후 MR을 통해 코드 리뷰 후 피드백
-
-- JIRA
-
-  - 전체 프로젝트 일정 관리
-  - 일정 기간동안 목표량을 설정하여 Sprint 진행 ( 1주일 )
-  - Task 마다 Story Point를 설정하여 진행
-
-- MatterMost & Webex & Discord
-
-  - 소통
-  - 회의
-
-- Notion
-
-  - 매일 오전 회의 / 오후 회의를 기록
-  - 회의록에 어제 한 일 , 오늘 할 일, 우려사항 등을 기입하여 회의 시간 단축 & 목표 설정
-  - 오류나 강의, 알게된 것들을 알기 쉽게 공유하며 팀원들 간의 자료 공유
-  - 각종 컨벤션 정리 ( 팀, 코드, 깃 )
-  - 일정 관리 ( 간트 차트 )
-  - 프로젝트 과정 중 팀원들 간의 공유가 필요한 문서 관리
-    - 와이어프레임 & 스토리보드
-    - 요구사항 명세서
-    - 기획서
-    - 디자인
-    - PPT
-    - ..
-
-- Tool
-  - Figma
-  - Adobe XD
-  - ERD Cloud
-  
-<br>
-
-> ## 💁 팀원
- <table>
-  <tr>
-    <td align="center"><a href="https://github.com/dttmm"><img src="https://avatars.githubusercontent.com/dttmm" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/mxxxxxji"><img src="https://avatars.githubusercontent.com/mxxxxxji" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/kettle4ot"><img src="https://avatars.githubusercontent.com/kettle4ot" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/us13579"><img src="https://avatars.githubusercontent.com/us13579" width="80px;" alt=""></td>
-    <td align="center"><a href="https://github.com/Jaehwany"><img src="https://avatars.githubusercontent.com/Jaehwany" width="80px;" alt=""></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/dttmm"><sub><b>강태웅</b></td>
-    <td align="center"><a href="https://github.com/mxxxxxji"><sub><b>김명지</b></td>
-    <td align="center"><a href="https://github.com/kettle4ot"><sub><b>김수빈</b></td>
-    <td align="center"><a href="https://github.com/us13579"><sub><b>김지수</b></td>
-    <td align="center"><a href="https://github.com/Jaehwany"><sub><b>이재환</b></td>
-  </tr>
-</table>
-</br></br>
-      
-> ## 서비스화면
+ ## 서비스화면
 간단한 글과 움짤
 </br></br>
 
