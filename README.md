@@ -74,7 +74,9 @@
      
 ## 🏴 **협업 환경**
 
-![image](https://user-images.githubusercontent.com/97875998/186788195-5a44837b-f1c1-47f1-9b69-e369cf5587b6.png)
+<br>
+
+![image](https://user-images.githubusercontent.com/97875998/186790445-ba6f2fe5-2aea-43fb-b7e6-bbbb1ce1b611.png)
 
 <br>
 
