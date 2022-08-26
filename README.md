@@ -14,7 +14,7 @@
 
 ### 🎥 소개 영상
 
-- [UCC 바로가기]()
+- [UCC 바로가기](https://youtu.be/YujF8wheJro)
 
 <br>
 
