@@ -6,23 +6,40 @@
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
-## 🏴 **Introduce**
+## 🗿 **Introduce**
 
-**좋구만유**는 사용자의 실시간 위치를 기반으로 문화 유산 정보 및 동행 서비스를 제공하는 프로젝트 입니다.
-
-<br>
-
-## 🏴 UCC
+> **좋구만유**는 사용자의 실시간 위치를 기반으로 문화 유산 정보 및 동행 서비스를 제공하는 프로젝트 입니다.
 
 <br>
 
-## 🏴 PPT
+## 🎥 소개 영상
+
+- [UCC 바로가기]()
 
 <br>
+
+## 🩸 PPT
+
+- **[중간 발표 PPT]()**
+
+- **[최종 발표 PPT]()**
+
+<br>
+
+## 🧾 프로젝트 산출물
+
+- ERD
+- API
+- 기능명세서
+- 시퀀스다이어그램
+- 와이어프레임
+- UI 설계
+
+<br>     
 
 ## 🕘 **프로젝트 진행 기간**
 
-**2022.07.07(목) ~ 2022.08.19(금)**
+> **2022.07.07(목) ~ 2022.08.19(금)**
 
 <br>
 
@@ -62,46 +79,43 @@
 <br>
 
 
-## 🏴 ERD
-
-<br>
-
 ## 🏴 개발 환경
 
-    # BackEnd
-    
-    Spring Boot 2.6.3
-    Spring Data JPA
-    Spring Security
-    Spring Validation
-    Java 11
-    QueryDSL 5.0
-    Lombok 1.18.24
-    Firebase 8.x
-    Gradle 7.4.x
-    Swagger 3.x
-    MySQL 8.0.29
-    
-    #Android
-    
-    Kotlin 1.7.0
-    Room 2.4.2
-    Retrofit 2.9.0
-    Glide 4.13.2
-    
-    
-    #Infra
-    
-    AWS EC2
-    Docker
-    Jenkins
-    
-    #IDE
-    
-    IntelliJ
-    Spring Tool Suite 4
-    MySQL Workbench 8.0
-    Android Studio
+- BackEnd
+
+   - Spring Boot 2.6.3
+   - Spring Data JPA
+   - Spring Security
+   - Spring Validation
+   - Java 11
+   - QueryDSL 5.0
+   - Lombok 1.18.24
+   - Firebase 8.x
+   - Gradle 7.4.x
+   - Swagger 3.x
+
+- Android
+
+   - Kotlin 1.7.0
+   - Room 2.4.2
+   - Retrofit 2.9.0
+   - Glide 4.13.2
+
+- DB
+
+   - MySQL 8.0.29 
+
+- CI/CD
+
+   - AWS EC2
+   - Docker
+   - Jenkins
+
+- IDE
+   - IntelliJ
+   - Spring Tool Suite 3
+   - MySQL Workbench 8.0
+   - Android Studio
 
 <br>
 
@@ -111,7 +125,8 @@
 
 ![image](https://user-images.githubusercontent.com/97875998/186785125-1f25c7c8-6e3b-434e-871f-68b18d47cd7c.png)
      
-<br>     
+<br>    
+        
 
  ## 🏴 주요 기능
 
