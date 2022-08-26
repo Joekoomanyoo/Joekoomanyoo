@@ -18,7 +18,7 @@
 
 <br>
 
-## 🩸 PPT
+### 📍 PPT
 
 - **[중간 발표 PPT](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%A4%91%EA%B0%84%20%EB%B0%9C%ED%91%9C%20PPT.pdf)**
 
@@ -26,7 +26,7 @@
 
 <br>
 
-## 🧾 프로젝트 산출물
+### 🧾 프로젝트 산출물
 
 - [ERD](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/ERD.png)
 - [API](https://github.com/Jaehwany/Heritage_Companion_Project/tree/main/docs/API%20%EC%84%A4%EA%B3%84)
