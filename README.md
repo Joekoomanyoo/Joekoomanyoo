@@ -17,24 +17,7 @@
 - [UCC 바로가기](https://youtu.be/YujF8wheJro)
 
 <br>
-
-### 📍 PPT
-
-- **[중간 발표 PPT](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%A4%91%EA%B0%84%20%EB%B0%9C%ED%91%9C%20PPT.pdf)**
-
-- **[최종 발표 PPT](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%B5%9C%EC%A2%85%20%EB%B0%9C%ED%91%9C%20PPT.pdf)**
-
-<br>
-
-### 🧾 프로젝트 산출물
-
-- [ERD](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/ERD.png)
-- [API](https://github.com/Jaehwany/Heritage_Companion_Project/tree/main/docs/API%20%EC%84%A4%EA%B3%84)
-- [시퀀스다이어그램](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%8B%9C%ED%80%80%EC%8A%A4%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)
-- [와이어프레임](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%99%80%EC%9D%B4%EC%96%B4%20%ED%94%84%EB%A0%88%EC%9E%84.png)
-- [플로우 차트](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%ED%94%8C%EB%A1%9C%EC%9A%B0%20%EC%B0%A8%ED%8A%B8.png)
-
-<br>     
+  
 
 ## 🕘 **프로젝트 진행 기간**
 
@@ -70,6 +53,24 @@
 </table>
      
 <br>     
+
+### 📍 PPT
+
+- **[중간 발표 PPT](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%A4%91%EA%B0%84%20%EB%B0%9C%ED%91%9C%20PPT.pdf)**
+
+- **[최종 발표 PPT](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%B5%9C%EC%A2%85%20%EB%B0%9C%ED%91%9C%20PPT.pdf)**
+
+<br>
+
+### 🧾 프로젝트 산출물
+
+- [ERD](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/ERD.png)
+- [API](https://github.com/Jaehwany/Heritage_Companion_Project/tree/main/docs/API%20%EC%84%A4%EA%B3%84)
+- [시퀀스다이어그램](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%8B%9C%ED%80%80%EC%8A%A4%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)
+- [와이어프레임](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%99%80%EC%9D%B4%EC%96%B4%20%ED%94%84%EB%A0%88%EC%9E%84.png)
+- [플로우 차트](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%ED%94%8C%EB%A1%9C%EC%9A%B0%20%EC%B0%A8%ED%8A%B8.png)
+
+<br>   
      
 ## 🏴 **협업 환경**
 
