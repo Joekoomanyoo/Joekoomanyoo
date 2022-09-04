@@ -80,6 +80,12 @@
 
 <br>
 
+## 🏴 아키텍처
+
+
+![image](https://user-images.githubusercontent.com/97875998/186785125-1f25c7c8-6e3b-434e-871f-68b18d47cd7c.png)
+     
+<br>   
 
 ## 🏴 개발 환경
 
@@ -121,13 +127,7 @@
 
 <br>
 
-
-## 🏴 아키텍처
-
-
-![image](https://user-images.githubusercontent.com/97875998/186785125-1f25c7c8-6e3b-434e-871f-68b18d47cd7c.png)
-     
-<br>    
+ 
         
 
  ## 🏴 주요 기능
