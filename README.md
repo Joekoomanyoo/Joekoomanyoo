@@ -12,20 +12,6 @@
 
 <br>
 
-### 🎥 소개 영상
-
-- [UCC 바로가기](https://youtu.be/YujF8wheJro)
-
-<br>
-  
-
-## 🕘 **프로젝트 진행 기간**
-
-> **2022.07.07(목) ~ 2022.08.19(금)**
-
-<br>
-
-
 ## 🧛 **팀원**
 <table>
  <tr>
@@ -45,7 +31,7 @@
      <tr>
     <td align="center"><a href="https://github.com/mxxxxxji"><sub><b>김명지</b></td>
     <td align="center"><a href="https://github.com/dttmm"><sub><b>강태웅</b></td>
-    <td align="center"><a href="https://github.com/kettle4ot"><sub>김수</b></td>
+    <td align="center"><a href="https://github.com/kettle4ot"><sub>김수빈</b></td>
     <td align="center"><a href="https://github.com/us13579"><sub><b>김지수</b></td>
     <td align="center"><a href="https://github.com/Jaehwany"><sub><b>이재환</b></td>
   </tr>
@@ -54,81 +40,50 @@
      
 <br>     
 
-### 📍 PPT
+## 🕘 **프로젝트 진행 기간**
 
-- **[중간 발표 PPT](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%A4%91%EA%B0%84%20%EB%B0%9C%ED%91%9C%20PPT.pdf)**
+> **2022.07.07(목) ~ 2022.08.19(금)**
 
-- **[최종 발표 PPT](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%B5%9C%EC%A2%85%20%EB%B0%9C%ED%91%9C%20PPT.pdf)**
+<br>
+
+### 🎥 UCC 영상
+
+- [UCC 바로가기](https://youtu.be/YujF8wheJro)
 
 <br>
 
 ### 🧾 프로젝트 산출물
 
-- [ERD](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/ERD.png)
-- [API](https://github.com/Jaehwany/Heritage_Companion_Project/tree/main/docs/API%20%EC%84%A4%EA%B3%84)
-- [시퀀스다이어그램](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%8B%9C%ED%80%80%EC%8A%A4%20%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)
-- [와이어프레임](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%EC%99%80%EC%9D%B4%EC%96%B4%20%ED%94%84%EB%A0%88%EC%9E%84.png)
-- [플로우 차트](https://github.com/Jaehwany/Heritage_Companion_Project/blob/main/docs/%ED%94%8C%EB%A1%9C%EC%9A%B0%20%EC%B0%A8%ED%8A%B8.png)
+- [ERD](/docs/ERD.png)
+- [API](/docs/API%20설계/API%20명세서.png)
+- [시퀀스다이어그램](/docs/좋구만유%20시퀀스%20다이어그램.png)
+- [와이어프레임](/docs/좋구만유%20와이어프레임.png)
+- [플로우 차트](/docs/좋구만유%20플로우%20차트.png)
+- **[중간 발표 PPT](/docs/중간%20발표%20PPT.pdf)**
+- **[최종 발표 PPT](/docs/최종%20발표%20PPT.pdf)**
 
 <br>   
-     
-## 🏴 **협업 환경**
-
-<br>
-
-![image](https://user-images.githubusercontent.com/97875998/186790445-ba6f2fe5-2aea-43fb-b7e6-bbbb1ce1b611.png)
-
-<br>
 
 ## 🏴 아키텍처
 
-
-![image](https://user-images.githubusercontent.com/97875998/186785125-1f25c7c8-6e3b-434e-871f-68b18d47cd7c.png)
-     
-<br>   
-
-## 🏴 개발 환경
-
-- BackEnd
-
-   - Spring Boot 2.6.3
-   - Spring Data JPA
-   - Spring Security
-   - Spring Validation
-   - Java 11
-   - QueryDSL 5.0
-   - Lombok 1.18.24
-   - Firebase 8.x
-   - Gradle 7.4.x
-   - Swagger 3.x
-
-- Android
-
-   - Kotlin 1.7.0
-   - Room 2.4.2
-   - Retrofit 2.9.0
-   - Glide 4.13.2
-
-- DB
-
-   - MySQL 8.0.29 
-
-- CI/CD
-
-   - AWS EC2
-   - Docker
-   - Jenkins
-
-- IDE
-   - IntelliJ
-   - Spring Tool Suite 3
-   - MySQL Workbench 8.0
-   - Android Studio
+![image](/docs/좋구만유%20아키텍쳐.png)
 
 <br>
 
- 
-        
+## 🏴 기술스택
+
+| 기술스택      | 개발환경                                                     |
+| ------------- | ------------------------------------------------------------ |
+| Android      | - Kotlin 1.7.0 </br> - Room 2.4.2 </br>  - Retrofit 2.9.0 </br>  - Glide 4.13.2                                 |
+| Spring Boot   | - Java 11 </br> - Gradle </br> - Spring Framwork 2.6.3 </br>  - Spring Data Jpa </br> - Spring Security |
+| Authenticate  | - JWT (Json Web Token) </br>                                 |
+| ORM           | - JPA </br> - QueryDsl                                       |
+| Message       | - Firebase </br> - Stomp                                                     |
+| Database      | - MySQL </br>                                  |
+
+
+     
+<br>   
 
  ## 🏴 주요 기능
 
